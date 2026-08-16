@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Globe, Mail, MessageCircle } from "lucide-react";
 
 import { Logo } from "@/components/logo";
@@ -93,6 +94,9 @@ export function SiteFooter() {
             <a href="#" className="transition-colors hover:text-foreground">
               Privacy
             </a>
+            <Link href="/login" className="transition-colors hover:text-foreground">
+              Dashboard login
+            </Link>
           </div>
         </div>
       </div>

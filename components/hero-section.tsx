@@ -11,15 +11,22 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden border-b border-border/60 pt-32 pb-20 sm:pt-40 sm:pb-28"
+      className="relative overflow-hidden border-b border-border/60 pt-32 pb-72 sm:pt-40 sm:pb-88"
     >
-      {/* Decorative background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-      >
-        <div className="absolute left-1/2 top-[-10rem] h-[32rem] w-[64rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.15] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
+      {/* Background */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.1] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
+
+        {/* Car row anchored to the bottom, not stretched over the copy above it */}
+        <div className="absolute inset-x-0 bottom-0 h-64 sm:h-80 md:h-96">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/hero-cars.png"
+            alt=""
+            className="mx-auto size-full max-w-5xl object-contain object-bottom"
+          />
+          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent" />
+        </div>
       </div>
 
       <div className="mx-auto flex max-w-4xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">

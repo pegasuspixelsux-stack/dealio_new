@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "storage": {
+    "bucket": "dealio-new-7319f.firebasestorage.app",
     "rules": "storage.rules"
   }
 }

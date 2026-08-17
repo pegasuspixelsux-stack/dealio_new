@@ -197,7 +197,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
         await updateVehicleAction(vehicle.id, input);
         toast.success("Vehículo actualizado.");
       }
-      router.push("/dashboard");
+      router.push("/dashboard/vehicles");
       router.refresh();
     } catch {
       setSubmitError("Algo salió mal al guardar el vehículo. Inténtalo de nuevo.");
@@ -458,7 +458,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
         <Button
           type="button"
           variant="outline"
-          onClick={() => router.push("/dashboard")}
+          onClick={() => router.push("/dashboard/vehicles")}
           disabled={submitting}
         >
           Cancelar

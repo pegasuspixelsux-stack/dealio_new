@@ -26,7 +26,7 @@ export function HeroSection() {
       {/* Legibility overlay */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/80 to-black/20"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/50 to-black/10"
       />
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">

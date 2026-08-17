@@ -13,7 +13,7 @@ export function AboutSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200&auto=format&fit=crop"
-              alt="A car dealership showroom"
+              alt="A member of the Dealio team"
               className="aspect-4/3 w-full object-cover"
             />
           </div>

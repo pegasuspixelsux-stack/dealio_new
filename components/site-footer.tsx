@@ -39,7 +39,7 @@ const SOCIAL_LINKS = [
 
 export function SiteFooter() {
   return (
-    <footer id="contact" className="bg-background">
+    <footer className="bg-background">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-4">

@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Sparkles, ShieldCheck, LineChart } from "lucide-react";
+import { BadgeCheck, HandCoins, Wrench } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -11,22 +11,22 @@ type Feature = {
 
 const FEATURES: Feature[] = [
   {
-    icon: Sparkles,
-    title: "AI-generated briefs",
+    icon: BadgeCheck,
+    title: "Every vehicle inspected",
     description:
-      "Turn rough notes into structured, ready-to-send deal briefs in seconds — no more blank-page starts.",
+      "Each car on our lot passes a multi-point inspection before it's listed, so what you see is what you get.",
   },
   {
-    icon: LineChart,
-    title: "Real-time pipeline insights",
+    icon: HandCoins,
+    title: "Upfront, honest pricing",
     description:
-      "See exactly where every deal stands with live dashboards that update as your team works.",
+      "No hidden fees or last-minute surprises — the price you see is the price you pay, plus flexible financing.",
   },
   {
-    icon: ShieldCheck,
-    title: "Enterprise-grade security",
+    icon: Wrench,
+    title: "Support after the sale",
     description:
-      "SOC 2-ready infrastructure, role-based access, and full audit trails keep your data protected.",
+      "From paperwork to trade-ins, our team sticks around to help long after you've driven off the lot.",
   },
 ];
 
@@ -36,11 +36,11 @@ export function FeaturesSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Everything your team needs to move faster
+            Why buy from us
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Built for modern sales and deal teams who want less busywork and
-            more time closing.
+            Straightforward pricing, inspected vehicles, and a team that
+            treats every sale like it matters.
           </p>
         </div>
 

@@ -1,7 +1,7 @@
 const STATS = [
-  { value: "500+", label: "Concesionarios" },
-  { value: "50 mil+", label: "Vehículos publicados" },
-  { value: "24/7", label: "Soporte" },
+  { value: "10 mil+", label: "Vehículos entregados" },
+  { value: "4.8★", label: "Valoración promedio" },
+  { value: "48 h", label: "Tiempo de respuesta" },
 ];
 
 export function AboutSection() {
@@ -14,7 +14,7 @@ export function AboutSection() {
             <img
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200&auto=format&fit=crop"
               alt="Un integrante del equipo de Dealio"
-              className="aspect-4/3 w-full object-cover"
+              className="aspect-square w-full object-cover"
             />
           </div>
         </div>
@@ -24,14 +24,13 @@ export function AboutSection() {
             Sobre nosotros
           </p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Hecho para concesionarios, por gente que entiende el rubro
+            Gente que entiende de autos, no solo de ventas
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Dealio nació de una frustración simple: publicar un vehículo no
-            debería tardar más que venderlo. Construimos una plataforma que
-            pone tu stock online en minutos — fotos, precios y formulario de
-            contacto incluidos — para que dediques menos tiempo al papeleo y
-            más tiempo a tus compradores.
+            Somos un equipo chico que revisa cada vehículo antes de
+            ofrecerlo, negocia con precios claros y sigue disponible mucho
+            después de que te llevás el auto. Comprar un usado no tiene por
+            qué ser complicado.
           </p>
 
           <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-border/60 pt-6">

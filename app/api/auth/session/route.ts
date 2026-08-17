@@ -5,7 +5,7 @@ import { isFirebaseAdminConfigured } from "@/lib/firebase/config";
 import { SESSION_COOKIE, SESSION_MAX_AGE_MS } from "@/lib/auth/session";
 
 export async function POST(request: Request) {
-  if (!isFirebaseAdminConfigured) {
+  if (!isFirebaseAdminConfigured()) {
     return NextResponse.json(
       {
         error:

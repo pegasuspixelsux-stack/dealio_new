@@ -18,7 +18,7 @@ export async function proxy(request: NextRequest) {
   // Without admin credentials configured yet, no session cookie could ever have
   // been minted (see /api/auth/session), so this branch only guards against a
   // stray/forged cookie value.
-  if (!isFirebaseAdminConfigured) {
+  if (!isFirebaseAdminConfigured()) {
     return NextResponse.redirect(loginUrl);
   }
 

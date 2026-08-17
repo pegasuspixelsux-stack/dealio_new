@@ -17,7 +17,7 @@ export interface Session {
 
 /** Reads and verifies the current session cookie. Returns null if absent or invalid. */
 export async function getSession(): Promise<Session | null> {
-  if (!isFirebaseAdminConfigured) return null;
+  if (!isFirebaseAdminConfigured()) return null;
 
   const cookieStore = await cookies();
   const sessionCookie = cookieStore.get(SESSION_COOKIE)?.value;

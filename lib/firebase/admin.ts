@@ -53,7 +53,7 @@ function buildCredential(): Credential {
 }
 
 function ensureAdminApp(): App {
-  if (!isFirebaseAdminConfigured) {
+  if (!isFirebaseAdminConfigured()) {
     throw new Error(
       "Firebase Admin is not configured. Set FIREBASE_ADMIN_PROJECT_ID, FIREBASE_ADMIN_CLIENT_EMAIL, and FIREBASE_ADMIN_PRIVATE_KEY in .env.local."
     );

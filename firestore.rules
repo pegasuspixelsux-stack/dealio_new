@@ -20,5 +20,12 @@ service cloud.firestore {
       allow create: if true;
       allow read, update, delete: if request.auth != null;
     }
+
+    match /tradeInLeads/{leadId} {
+      // Anyone can submit a trade-in estimate request from the homepage;
+      // only signed-in users can read or manage the resulting list.
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
   }
 }

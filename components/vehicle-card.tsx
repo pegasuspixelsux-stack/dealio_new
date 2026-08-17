@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Car } from "lucide-react";
 
 import type { Vehicle } from "@/types/vehicle";
+import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 
 const currency = new Intl.NumberFormat("es-UY", {
@@ -10,11 +11,29 @@ const currency = new Intl.NumberFormat("es-UY", {
   maximumFractionDigits: 0,
 });
 
-export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
+export function VehicleCard({
+  vehicle,
+  layout = "vertical",
+}: {
+  vehicle: Vehicle;
+  layout?: "vertical" | "horizontal";
+}) {
+  const horizontal = layout === "horizontal";
+
   return (
     <Link href={`/vehicles/${vehicle.id}`} className="group block">
-      <Card className="gap-0 overflow-hidden py-0 ring-border/60 transition-shadow group-hover:shadow-md">
-        <div className="aspect-4/3 w-full overflow-hidden bg-muted">
+      <Card
+        className={cn(
+          "gap-0 overflow-hidden py-0 ring-border/60 transition-shadow group-hover:shadow-md",
+          horizontal && "flex-row"
+        )}
+      >
+        <div
+          className={cn(
+            "shrink-0 overflow-hidden bg-muted",
+            horizontal ? "aspect-square w-2/5" : "aspect-4/3 w-full"
+          )}
+        >
           {vehicle.photos[0] ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -28,8 +47,13 @@ export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
             </div>
           )}
         </div>
-        <CardContent className="flex flex-col gap-1 p-4">
-          <h3 className="font-medium text-foreground">
+        <CardContent
+          className={cn(
+            "flex min-w-0 flex-1 flex-col gap-1 p-4",
+            horizontal && "justify-center"
+          )}
+        >
+          <h3 className="truncate font-medium text-foreground">
             {vehicle.year} {vehicle.make} {vehicle.model}
           </h3>
           <p className="text-sm text-muted-foreground">

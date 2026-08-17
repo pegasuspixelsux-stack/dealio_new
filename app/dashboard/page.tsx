@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Plus, TriangleAlert } from "lucide-react";
+import { ArrowLeft, Plus, TriangleAlert } from "lucide-react";
 
 import { listVehicles } from "@/lib/data/vehicles";
 import { VehicleTable } from "@/components/dashboard/vehicle-table";
@@ -22,6 +22,14 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
+      <Link
+        href="/"
+        className="inline-flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="size-4" />
+        Volver al sitio
+      </Link>
+
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-foreground">

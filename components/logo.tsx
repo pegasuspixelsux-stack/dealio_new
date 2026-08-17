@@ -1,6 +1,12 @@
 import { cn } from "@/lib/utils";
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({
+  className,
+  textClassName,
+}: {
+  className?: string;
+  textClassName?: string;
+}) {
   return (
     <span className={cn("flex items-center gap-2 font-semibold tracking-tight", className)}>
       <span className="flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -26,7 +32,7 @@ export function Logo({ className }: { className?: string }) {
           />
         </svg>
       </span>
-      <span className="text-base text-foreground">Dealio</span>
+      <span className={cn("text-base text-foreground", textClassName)}>Dealio</span>
     </span>
   );
 }

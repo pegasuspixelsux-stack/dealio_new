@@ -7,7 +7,7 @@ import { VehicleTable } from "@/components/dashboard/vehicle-table";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-export const metadata: Metadata = { title: "Dashboard — Dealio" };
+export const metadata: Metadata = { title: "Panel — Dealio" };
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
@@ -17,7 +17,7 @@ export default async function DashboardPage() {
   try {
     vehicles = await listVehicles();
   } catch {
-    loadError = "Could not load your vehicle inventory. Please refresh the page.";
+    loadError = "No pudimos cargar tu stock de vehículos. Recargá la página.";
   }
 
   return (
@@ -33,23 +33,23 @@ export default async function DashboardPage() {
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-            Vehicle inventory
+            Stock de vehículos
           </h1>
           <p className="text-sm text-muted-foreground">
-            {vehicles.length} vehicle{vehicles.length === 1 ? "" : "s"} in your
-            inventory
+            {vehicles.length} vehículo{vehicles.length === 1 ? "" : "s"} en tu
+            stock
           </p>
         </div>
         <Button nativeButton={false} render={<Link href="/dashboard/vehicles/new" />}>
           <Plus />
-          Add vehicle
+          Agregar vehículo
         </Button>
       </div>
 
       {loadError ? (
         <Alert variant="destructive">
           <TriangleAlert />
-          <AlertTitle>Something went wrong</AlertTitle>
+          <AlertTitle>Algo salió mal</AlertTitle>
           <AlertDescription>{loadError}</AlertDescription>
         </Alert>
       ) : (

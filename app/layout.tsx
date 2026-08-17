@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dealio — AI-generated deal briefs",
+  title: "Dealio — Compra, venta y financiación de vehículos",
   description:
-    "Dealio turns rough pipeline notes into structured, ready-to-send deal briefs in seconds.",
+    "Encontrá tu próximo vehículo en Dealio: stock actualizado, financiación y tasación de tu usado en Uruguay.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="es-UY"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">

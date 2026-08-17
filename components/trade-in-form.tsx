@@ -19,10 +19,10 @@ import {
 } from "@/components/ui/select";
 
 const CONDITIONS = [
-  { value: "excellent", label: "Excellent" },
-  { value: "good", label: "Good" },
-  { value: "fair", label: "Fair" },
-  { value: "poor", label: "Poor" },
+  { value: "excellent", label: "Excelente" },
+  { value: "good", label: "Bueno" },
+  { value: "fair", label: "Regular" },
+  { value: "poor", label: "Malo" },
 ];
 
 interface FormState {
@@ -67,7 +67,7 @@ export function TradeInForm() {
     if (result.ok) {
       setStatus("sent");
     } else {
-      setError(result.error ?? "Something went wrong. Please try again.");
+      setError(result.error ?? "Algo salió mal. Probá de nuevo.");
       setStatus("idle");
     }
   }
@@ -75,16 +75,16 @@ export function TradeInForm() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-lg">Get a trade-in estimate</CardTitle>
+        <CardTitle className="text-lg">Solicitá una tasación</CardTitle>
       </CardHeader>
       <CardContent>
         {status === "sent" ? (
           <Alert className="border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300">
             <CircleCheck />
             <AlertDescription>
-              Thanks{form.name ? `, ${form.name.split(" ")[0]}` : ""}! We
-              received your vehicle details and will follow up with an
-              estimate shortly.
+              ¡Gracias{form.name ? `, ${form.name.split(" ")[0]}` : ""}!
+              Recibimos los datos de tu vehículo y te contactaremos con una
+              tasación a la brevedad.
             </AlertDescription>
           </Alert>
         ) : (
@@ -98,7 +98,7 @@ export function TradeInForm() {
 
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               <div className="col-span-1 flex flex-col gap-1.5">
-                <Label htmlFor="trade-year">Year</Label>
+                <Label htmlFor="trade-year">Año</Label>
                 <Input
                   id="trade-year"
                   required
@@ -109,7 +109,7 @@ export function TradeInForm() {
                 />
               </div>
               <div className="col-span-1 flex flex-col gap-1.5">
-                <Label htmlFor="trade-make">Make</Label>
+                <Label htmlFor="trade-make">Marca</Label>
                 <Input
                   id="trade-make"
                   required
@@ -119,30 +119,34 @@ export function TradeInForm() {
                 />
               </div>
               <div className="col-span-1 flex flex-col gap-1.5">
-                <Label htmlFor="trade-model">Model</Label>
+                <Label htmlFor="trade-model">Modelo</Label>
                 <Input
                   id="trade-model"
                   required
                   value={form.model}
                   onChange={(e) => update("model", e.target.value)}
-                  placeholder="Camry"
+                  placeholder="Corolla"
                 />
               </div>
               <div className="col-span-1 flex flex-col gap-1.5">
-                <Label htmlFor="trade-mileage">Mileage</Label>
+                <Label htmlFor="trade-mileage">Kilometraje</Label>
                 <Input
                   id="trade-mileage"
                   inputMode="numeric"
                   value={form.mileage}
                   onChange={(e) => update("mileage", e.target.value)}
-                  placeholder="65,000"
+                  placeholder="65.000"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="trade-condition">Condition</Label>
-              <Select value={form.condition} onValueChange={(value) => value && update("condition", value)}>
+              <Label htmlFor="trade-condition">Estado</Label>
+              <Select
+                items={CONDITIONS}
+                value={form.condition}
+                onValueChange={(value) => value && update("condition", value)}
+              >
                 <SelectTrigger id="trade-condition" className="w-full">
                   <SelectValue />
                 </SelectTrigger>
@@ -158,53 +162,53 @@ export function TradeInForm() {
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="trade-name">Name</Label>
+                <Label htmlFor="trade-name">Nombre</Label>
                 <Input
                   id="trade-name"
                   required
                   value={form.name}
                   onChange={(e) => update("name", e.target.value)}
-                  placeholder="Jane Doe"
+                  placeholder="Juan Pérez"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="trade-phone">Phone</Label>
+                <Label htmlFor="trade-phone">Teléfono</Label>
                 <Input
                   id="trade-phone"
                   type="tel"
                   value={form.phone}
                   onChange={(e) => update("phone", e.target.value)}
-                  placeholder="(555) 123-4567"
+                  placeholder="099 123 456"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="trade-email">Email</Label>
+              <Label htmlFor="trade-email">Correo electrónico</Label>
               <Input
                 id="trade-email"
                 type="email"
                 required
                 value={form.email}
                 onChange={(e) => update("email", e.target.value)}
-                placeholder="jane@example.com"
+                placeholder="juan@example.com"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="trade-notes">Anything else we should know?</Label>
+              <Label htmlFor="trade-notes">¿Algo más que debamos saber?</Label>
               <Textarea
                 id="trade-notes"
                 rows={3}
                 value={form.notes}
                 onChange={(e) => update("notes", e.target.value)}
-                placeholder="Accident history, modifications, etc."
+                placeholder="Historial de choques, modificaciones, etc."
               />
             </div>
 
             <Button type="submit" disabled={status === "loading"} className="w-full">
               {status === "loading" ? <Loader2 className="animate-spin" /> : null}
-              Get my estimate
+              Solicitar tasación
             </Button>
           </form>
         )}

@@ -23,16 +23,16 @@ export async function submitLeadAction(input: SubmitLeadInput): Promise<SubmitLe
   const message = input.message.trim();
 
   if (!name || !email || !message) {
-    return { ok: false, error: "Please fill in all fields." };
+    return { ok: false, error: "Completá todos los campos." };
   }
   if (!EMAIL_PATTERN.test(email)) {
-    return { ok: false, error: "Please enter a valid email address." };
+    return { ok: false, error: "Ingresá un correo electrónico válido." };
   }
 
   try {
     await createLead({ vehicleId: input.vehicleId, vehicleTitle: input.vehicleTitle, name, email, message });
     return { ok: true };
   } catch {
-    return { ok: false, error: "Could not send your message. Please try again in a moment." };
+    return { ok: false, error: "No pudimos enviar tu mensaje. Probá de nuevo en un momento." };
   }
 }

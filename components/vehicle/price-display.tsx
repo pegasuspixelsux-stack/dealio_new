@@ -1,4 +1,4 @@
-const currency = new Intl.NumberFormat("en-US", {
+const currency = new Intl.NumberFormat("es-UY", {
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 0,
@@ -18,7 +18,7 @@ export function PriceDisplay({
     <div className="flex flex-col gap-1">
       <div className="flex flex-wrap items-baseline gap-2">
         <span className="text-4xl font-semibold tracking-tight text-foreground">
-          {priceDisplay != null ? currency.format(priceDisplay) : "Contact for price"}
+          {priceDisplay != null ? currency.format(priceDisplay) : "Precio a consultar"}
         </span>
         {showCompareAt ? (
           <span className="text-lg text-muted-foreground line-through">
@@ -28,7 +28,7 @@ export function PriceDisplay({
       </div>
       {showCompareAt ? (
         <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
-          Save {currency.format(priceCompareAt! - priceDisplay!)}
+          Ahorrás {currency.format(priceCompareAt! - priceDisplay!)}
         </span>
       ) : null}
     </div>

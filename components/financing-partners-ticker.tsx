@@ -7,7 +7,7 @@ export function FinancingPartnersTicker() {
     <section className="border-b border-border/60 bg-muted/30 py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <p className="mb-6 text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">
-          Financing available through
+          Financiación disponible a través de
         </p>
         <div
           className="relative overflow-hidden"

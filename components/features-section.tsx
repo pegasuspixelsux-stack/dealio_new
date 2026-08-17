@@ -12,21 +12,21 @@ type Feature = {
 const FEATURES: Feature[] = [
   {
     icon: BadgeCheck,
-    title: "Every vehicle inspected",
+    title: "Todos los vehículos revisados",
     description:
-      "Each car on our lot passes a multi-point inspection before it's listed, so what you see is what you get.",
+      "Cada auto de nuestro stock pasa una inspección de múltiples puntos antes de publicarse, así lo que ves es lo que hay.",
   },
   {
     icon: HandCoins,
-    title: "Upfront, honest pricing",
+    title: "Precios claros, sin sorpresas",
     description:
-      "No hidden fees or last-minute surprises — the price you see is the price you pay, plus flexible financing.",
+      "Sin costos ocultos ni sorpresas de último momento — el precio que ves es el que pagás, más financiación flexible.",
   },
   {
     icon: Wrench,
-    title: "Support after the sale",
+    title: "Te acompañamos después de la venta",
     description:
-      "From paperwork to trade-ins, our team sticks around to help long after you've driven off the lot.",
+      "Desde el papeleo hasta tu próximo trade-in, nuestro equipo sigue ahí mucho después de que te llevás el auto.",
   },
 ];
 
@@ -36,11 +36,11 @@ export function FeaturesSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Why buy from us
+            Por qué comprarnos a nosotros
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Straightforward pricing, inspected vehicles, and a team that
-            treats every sale like it matters.
+            Precios claros, vehículos revisados y un equipo que trata cada
+            venta como si importara — porque importa.
           </p>
         </div>
 

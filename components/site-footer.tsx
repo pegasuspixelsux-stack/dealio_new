@@ -6,35 +6,35 @@ import { Separator } from "@/components/ui/separator";
 
 const FOOTER_LINKS: { title: string; links: { label: string; href: string }[] }[] = [
   {
-    title: "Product",
+    title: "Producto",
     links: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Changelog", href: "#" },
+      { label: "Ventajas", href: "#features" },
+      { label: "Financiación", href: "#financing" },
+      { label: "Novedades", href: "#" },
     ],
   },
   {
-    title: "Company",
+    title: "Empresa",
     links: [
-      { label: "About", href: "#about" },
-      { label: "Careers", href: "#" },
-      { label: "Contact", href: "#contact" },
+      { label: "Nosotros", href: "#about" },
+      { label: "Trabajá con nosotros", href: "#" },
+      { label: "Contacto", href: "#contact" },
     ],
   },
   {
-    title: "Resources",
+    title: "Recursos",
     links: [
-      { label: "Documentation", href: "#" },
-      { label: "Support", href: "#" },
-      { label: "Privacy policy", href: "#" },
+      { label: "Documentación", href: "#" },
+      { label: "Soporte", href: "#" },
+      { label: "Política de privacidad", href: "#" },
     ],
   },
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Website", href: "#", icon: Globe },
-  { label: "Community", href: "#", icon: MessageCircle },
-  { label: "Email", href: "mailto:hello@dealio.app", icon: Mail },
+  { label: "Sitio web", href: "#", icon: Globe },
+  { label: "Comunidad", href: "#", icon: MessageCircle },
+  { label: "Correo", href: "mailto:hello@dealio.app", icon: Mail },
 ];
 
 export function SiteFooter() {
@@ -45,8 +45,8 @@ export function SiteFooter() {
           <div className="flex flex-col gap-4">
             <Logo />
             <p className="max-w-xs text-sm text-muted-foreground">
-              AI-generated deal briefs built for teams who want to close
-              faster and organize less.
+              Compra, venta y financiación de vehículos, todo en un mismo
+              lugar.
             </p>
             <div className="flex items-center gap-3">
               {SOCIAL_LINKS.map((social) => (
@@ -86,16 +86,16 @@ export function SiteFooter() {
         <Separator className="my-10" />
 
         <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Dealio, Inc. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Dealio. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="transition-colors hover:text-foreground">
-              Terms
+              Términos
             </a>
             <a href="#" className="transition-colors hover:text-foreground">
-              Privacy
+              Privacidad
             </a>
             <Link href="/login" className="transition-colors hover:text-foreground">
-              Dashboard login
+              Ingreso al panel
             </Link>
           </div>
         </div>

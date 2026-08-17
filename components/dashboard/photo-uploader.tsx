@@ -43,8 +43,9 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
       <Alert variant="destructive">
         <TriangleAlert />
         <AlertDescription>
-          Firebase is not configured, so photo uploads are disabled. Add your{" "}
-          <code>NEXT_PUBLIC_FIREBASE_*</code> values to <code>.env.local</code>.
+          Firebase no está configurado, así que la subida de fotos está
+          deshabilitada. Agregá los valores de{" "}
+          <code>NEXT_PUBLIC_FIREBASE_*</code> a <code>.env.local</code>.
         </AlertDescription>
       </Alert>
     );
@@ -57,7 +58,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
 
   async function processFile(file: File) {
     if (!file.type.startsWith("image/")) {
-      toast.error(`${file.name} isn't an image and was skipped.`);
+      toast.error(`${file.name} no es una imagen y fue omitido.`);
       return;
     }
 
@@ -70,7 +71,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
     const upload = await resizeImageFile(file);
 
     if (upload.size > MAX_UPLOAD_BYTES) {
-      toast.error(`${file.name} is larger than 5MB even after resizing and was skipped.`);
+      toast.error(`${file.name} pesa más de 5MB incluso después de redimensionar y fue omitido.`);
       setUploading((prev) => prev.filter((item) => item.id !== uploadId));
       URL.revokeObjectURL(previewUrl);
       return;
@@ -92,7 +93,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
         );
       },
       () => {
-        toast.error(`Couldn't upload ${file.name}. Please try again.`);
+        toast.error(`No se pudo subir ${file.name}. Probá de nuevo.`);
         setUploading((prev) => prev.filter((item) => item.id !== uploadId));
         URL.revokeObjectURL(previewUrl);
       },
@@ -143,7 +144,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
             {index === 0 ? (
               <span className="absolute left-1.5 top-1.5 inline-flex items-center gap-1 rounded-full bg-background/90 px-2 py-0.5 text-[11px] font-medium text-foreground shadow-sm">
                 <Star className="size-3 fill-current" />
-                Cover
+                Portada
               </span>
             ) : (
               <button
@@ -151,13 +152,13 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
                 onClick={() => handleMakeCover(photo)}
                 className="absolute left-1.5 top-1.5 rounded-full bg-background/80 px-2 py-0.5 text-[11px] font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100"
               >
-                Make cover
+                Usar como portada
               </button>
             )}
             <button
               type="button"
               onClick={() => handleRemove(photo)}
-              aria-label="Remove photo"
+              aria-label="Quitar foto"
               className="absolute right-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-background/90 text-foreground shadow-sm transition-colors hover:bg-destructive hover:text-white"
             >
               <X className="size-3.5" />
@@ -187,14 +188,15 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
           )}
         >
           <ImagePlus className="size-5" />
-          <span className="text-xs font-medium">Add photos</span>
+          <span className="text-xs font-medium">Agregar fotos</span>
         </button>
       </div>
 
       <p className="text-xs text-muted-foreground">
-        The first photo is used as the cover image everywhere the vehicle is
-        shown. Hover a photo to set it as cover or remove it. Photos are
-        resized in your browser and capped at 5MB each.
+        La primera foto se usa como portada en todos lados donde se muestra el
+        vehículo. Pasá el mouse sobre una foto para usarla como portada o
+        quitarla. Las fotos se redimensionan en tu navegador y tienen un
+        límite de 5MB cada una.
       </p>
 
       {photos.length === 0 && uploading.length === 0 ? (
@@ -206,7 +208,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
           onClick={() => inputRef.current?.click()}
         >
           <ImagePlus />
-          Upload photos
+          Subir fotos
         </Button>
       ) : null}
     </div>

@@ -19,7 +19,7 @@ export function LeadForm({
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState(`I'm interested in the ${vehicleTitle}. Is it still available?`);
+  const [message, setMessage] = useState(`Estoy interesado/a en ${vehicleTitle}. ¿Sigue disponible?`);
   const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -32,7 +32,7 @@ export function LeadForm({
     if (result.ok) {
       setStatus("sent");
     } else {
-      setError(result.error ?? "Something went wrong. Please try again.");
+      setError(result.error ?? "Algo salió mal. Probá de nuevo.");
       setStatus("idle");
     }
   }
@@ -42,8 +42,8 @@ export function LeadForm({
       <Alert className="border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300">
         <CircleCheck />
         <AlertDescription>
-          Thanks, {name.split(" ")[0] || "there"}! We received your message and
-          will get back to you shortly.
+          ¡Gracias, {name.split(" ")[0] || "che"}! Recibimos tu mensaje y te
+          responderemos a la brevedad.
         </AlertDescription>
       </Alert>
     );
@@ -59,28 +59,28 @@ export function LeadForm({
       ) : null}
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="lead-name">Name</Label>
+        <Label htmlFor="lead-name">Nombre</Label>
         <Input
           id="lead-name"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Jane Doe"
+          placeholder="Juan Pérez"
         />
       </div>
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="lead-email">Email</Label>
+        <Label htmlFor="lead-email">Correo electrónico</Label>
         <Input
           id="lead-email"
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="jane@example.com"
+          placeholder="juan@example.com"
         />
       </div>
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="lead-message">Message</Label>
+        <Label htmlFor="lead-message">Mensaje</Label>
         <Textarea
           id="lead-message"
           required
@@ -91,7 +91,7 @@ export function LeadForm({
       </div>
       <Button type="submit" disabled={status === "loading"} className="w-full">
         {status === "loading" ? <Loader2 className="animate-spin" /> : null}
-        Send message
+        Enviar mensaje
       </Button>
     </form>
   );

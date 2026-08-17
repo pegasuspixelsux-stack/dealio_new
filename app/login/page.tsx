@@ -10,7 +10,7 @@ import { Logo } from "@/components/logo";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
-  title: "Sign in — Dealio",
+  title: "Iniciar sesión — Dealio",
 };
 
 export default async function LoginPage() {
@@ -31,7 +31,7 @@ export default async function LoginPage() {
         <div className="mb-8 flex flex-col items-center gap-2 text-center">
           <Logo />
           <p className="text-sm text-muted-foreground">
-            Sign in to manage your vehicle inventory.
+            Iniciá sesión para gestionar tu stock de vehículos.
           </p>
         </div>
         <Suspense fallback={<Skeleton className="h-48 w-full" />}>

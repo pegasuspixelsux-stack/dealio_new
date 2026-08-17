@@ -4,7 +4,7 @@ import { Car } from "lucide-react";
 import { listPublishedVehicles } from "@/lib/data/vehicles";
 import { Card, CardContent } from "@/components/ui/card";
 
-const currency = new Intl.NumberFormat("en-US", {
+const currency = new Intl.NumberFormat("es-UY", {
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 0,
@@ -26,10 +26,11 @@ export async function FeaturedVehiclesSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Available now
+            Disponibles ahora
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            A look at what&apos;s currently in the lot, updated as vehicles come in.
+            Un vistazo a lo que tenemos en stock, actualizado a medida que
+            entran vehículos.
           </p>
         </div>
 
@@ -57,13 +58,13 @@ export async function FeaturedVehiclesSection() {
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     {vehicle.specs.mileage != null
-                      ? `${vehicle.specs.mileage.toLocaleString()} mi`
-                      : "Mileage on request"}
+                      ? `${vehicle.specs.mileage.toLocaleString("es-UY")} km`
+                      : "Kilometraje a consultar"}
                   </p>
                   <p className="mt-1 font-semibold text-foreground">
                     {vehicle.priceDisplay != null
                       ? currency.format(vehicle.priceDisplay)
-                      : "Contact for price"}
+                      : "Precio a consultar"}
                   </p>
                 </CardContent>
               </Card>

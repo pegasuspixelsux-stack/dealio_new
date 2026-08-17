@@ -1,7 +1,7 @@
 const STATS = [
-  { value: "500+", label: "Dealers" },
-  { value: "50k+", label: "Vehicles listed" },
-  { value: "24/7", label: "Support" },
+  { value: "500+", label: "Concesionarios" },
+  { value: "50 mil+", label: "Vehículos publicados" },
+  { value: "24/7", label: "Soporte" },
 ];
 
 export function AboutSection() {
@@ -13,7 +13,7 @@ export function AboutSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1200&auto=format&fit=crop"
-              alt="A member of the Dealio team"
+              alt="Un integrante del equipo de Dealio"
               className="aspect-4/3 w-full object-cover"
             />
           </div>
@@ -21,17 +21,17 @@ export function AboutSection() {
 
         <div className="order-1 lg:order-2">
           <p className="text-xs font-bold uppercase tracking-widest text-primary">
-            About us
+            Sobre nosotros
           </p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Built for dealers, by people who get it
+            Hecho para concesionarios, por gente que entiende el rubro
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Dealio started with a simple frustration: listing a vehicle
-            shouldn&apos;t take longer than selling it. We built a platform
-            that gets your inventory online in minutes — photos, pricing, and
-            a lead form included — so you can spend less time on paperwork
-            and more time with buyers.
+            Dealio nació de una frustración simple: publicar un vehículo no
+            debería tardar más que venderlo. Construimos una plataforma que
+            pone tu stock online en minutos — fotos, precios y formulario de
+            contacto incluidos — para que dediques menos tiempo al papeleo y
+            más tiempo a tus compradores.
           </p>
 
           <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-border/60 pt-6">

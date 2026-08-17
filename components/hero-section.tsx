@@ -5,28 +5,39 @@ import { ArrowRight, PlayCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-const HEADLINE = "Close better deals, faster than ever";
+const HEADLINE = "Encontrá tu próximo auto sin vueltas";
 
 export function HeroSection() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden border-b border-border/60 py-20 sm:py-28"
+      className="relative isolate flex min-h-[520px] items-center overflow-hidden border-b border-border/60 py-24 sm:min-h-[640px] sm:py-32"
     >
-      {/* Background */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.1] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
+      {/* Background image */}
+      <div aria-hidden="true" className="absolute inset-0 -z-20">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/modern car dealership.png"
+          alt=""
+          className="size-full object-cover object-center"
+        />
       </div>
 
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div className="flex flex-col items-start text-left">
+      {/* Legibility overlay */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-background/20"
+      />
+
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex max-w-xl flex-col items-start text-left">
           <motion.span
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className="mb-6 inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
           >
-            Now with AI-generated deal briefs
+            Stock actualizado todas las semanas
           </motion.span>
 
           <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
@@ -49,9 +60,8 @@ export function HeroSection() {
             transition={{ duration: 0.4, delay: 0.7 }}
             className="mt-6 max-w-lg text-balance text-lg text-muted-foreground sm:text-xl"
           >
-            Dealio turns rough pipeline notes into structured, ready-to-send
-            briefs in seconds — so your team spends less time organizing and
-            more time closing.
+            En Dealio comprás con precios claros, vehículos revisados y
+            financiación flexible — todo desde un mismo lugar.
           </motion.p>
 
           <motion.div
@@ -61,29 +71,15 @@ export function HeroSection() {
             className="mt-10 flex flex-col items-start gap-3 sm:flex-row"
           >
             <Button size="lg" className="w-full sm:w-auto">
-              Get started for free
+              Ver stock disponible
               <ArrowRight />
             </Button>
             <Button size="lg" variant="outline" className="w-full sm:w-auto">
               <PlayCircle />
-              Watch demo
+              Cómo funciona
             </Button>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/hero-cars.png"
-            alt="A lineup of vehicles available on the lot"
-            className="w-full object-contain"
-          />
-        </motion.div>
       </div>
     </section>
   );

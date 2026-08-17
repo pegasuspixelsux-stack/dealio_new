@@ -27,7 +27,7 @@ export function ContactForm() {
     if (result.ok) {
       setStatus("sent");
     } else {
-      setError(result.error ?? "Something went wrong. Please try again.");
+      setError(result.error ?? "Algo salió mal. Probá de nuevo.");
       setStatus("idle");
     }
   }
@@ -35,15 +35,15 @@ export function ContactForm() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-lg">Send us a message</CardTitle>
+        <CardTitle className="text-lg">Envianos un mensaje</CardTitle>
       </CardHeader>
       <CardContent>
         {status === "sent" ? (
           <Alert className="border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300">
             <CircleCheck />
             <AlertDescription>
-              Thanks, {name.split(" ")[0] || "there"}! We received your
-              message and will get back to you shortly.
+              ¡Gracias, {name.split(" ")[0] || "che"}! Recibimos tu mensaje y
+              te responderemos a la brevedad.
             </AlertDescription>
           </Alert>
         ) : (
@@ -56,41 +56,41 @@ export function ContactForm() {
             ) : null}
 
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="contact-name">Name</Label>
+              <Label htmlFor="contact-name">Nombre</Label>
               <Input
                 id="contact-name"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Jane Doe"
+                placeholder="Juan Pérez"
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="contact-email">Email</Label>
+              <Label htmlFor="contact-email">Correo electrónico</Label>
               <Input
                 id="contact-email"
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="jane@example.com"
+                placeholder="juan@example.com"
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="contact-message">How can we help?</Label>
+              <Label htmlFor="contact-message">¿En qué te podemos ayudar?</Label>
               <Textarea
                 id="contact-message"
                 required
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="I have a question about..."
+                placeholder="Tengo una consulta sobre..."
               />
             </div>
 
             <Button type="submit" disabled={status === "loading"} className="w-full">
               {status === "loading" ? <Loader2 className="animate-spin" /> : null}
-              Send message
+              Enviar mensaje
             </Button>
           </form>
         )}

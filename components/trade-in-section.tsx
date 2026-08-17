@@ -3,9 +3,9 @@ import { RefreshCw } from "lucide-react";
 import { TradeInForm } from "@/components/trade-in-form";
 
 const POINTS = [
-  "Get a real estimate in one business day",
-  "No obligation to sell — estimates are free",
-  "Apply your trade-in value toward your next vehicle",
+  "Recibí una tasación real en un día hábil",
+  "Sin obligación de vender — la tasación es gratis",
+  "Usá el valor de tu usado como parte de pago de tu próximo vehículo",
 ];
 
 export function TradeInSection() {
@@ -15,15 +15,14 @@ export function TradeInSection() {
         <div>
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
             <RefreshCw className="size-4" />
-            Trade-in
+            Permuta
           </p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Have a vehicle to trade in?
+            ¿Tenés un auto para dar en parte de pago?
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Tell us about your current vehicle and we&apos;ll get back to you
-            with an estimated trade-in value — no showroom visit required to
-            get started.
+            Contanos sobre tu vehículo actual y te respondemos con una
+            tasación estimada — no hace falta visitar el local para empezar.
           </p>
           <ul className="mt-6 flex flex-col gap-3">
             {POINTS.map((point) => (

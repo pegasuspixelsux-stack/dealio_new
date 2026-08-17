@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getVehicle } from "@/lib/data/vehicles";
 import { VehicleForm } from "@/components/dashboard/vehicle-form";
 
-export const metadata: Metadata = { title: "Edit vehicle — Dealio" };
+export const metadata: Metadata = { title: "Editar vehículo — Dealio" };
 
 export default async function EditVehiclePage({ params }: PageProps<"/dashboard/vehicles/[id]/edit">) {
   const { id } = await params;
@@ -17,7 +17,7 @@ export default async function EditVehiclePage({ params }: PageProps<"/dashboard/
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">
           {vehicle.year} {vehicle.make} {vehicle.model}
         </h1>
-        <p className="text-sm text-muted-foreground">Update this listing&apos;s details.</p>
+        <p className="text-sm text-muted-foreground">Actualizá los datos de esta publicación.</p>
       </div>
       <VehicleForm mode="edit" vehicle={vehicle} />
     </div>

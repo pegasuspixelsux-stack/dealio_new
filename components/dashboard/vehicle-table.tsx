@@ -35,7 +35,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-const currency = new Intl.NumberFormat("en-US", {
+const currency = new Intl.NumberFormat("es-UY", {
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 0,
@@ -50,10 +50,10 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
     startDeleteTransition(async () => {
       try {
         await deleteVehicleAction(id);
-        toast.success("Vehicle deleted.");
+        toast.success("Vehículo eliminado.");
         router.refresh();
       } catch {
-        toast.error("Could not delete this vehicle. Please try again.");
+        toast.error("No pudimos eliminar el vehículo. Probá de nuevo.");
       } finally {
         setPendingDeleteId(null);
       }
@@ -63,9 +63,9 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
   if (vehicles.length === 0) {
     return (
       <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-border py-16 text-center">
-        <p className="font-medium text-foreground">No vehicles yet</p>
+        <p className="font-medium text-foreground">Todavía no hay vehículos</p>
         <p className="text-sm text-muted-foreground">
-          Add your first vehicle to start building your inventory.
+          Agregá tu primer vehículo para empezar a armar tu stock.
         </p>
       </div>
     );
@@ -77,10 +77,10 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Vehicle</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Updated</TableHead>
+              <TableHead>Vehículo</TableHead>
+              <TableHead>Estado</TableHead>
+              <TableHead>Precio</TableHead>
+              <TableHead>Actualizado</TableHead>
               <TableHead className="w-10" />
             </TableRow>
           </TableHeader>
@@ -110,8 +110,8 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
                       </Link>
                       <p className="text-xs text-muted-foreground">
                         {vehicle.specs.mileage != null
-                          ? `${vehicle.specs.mileage.toLocaleString()} mi`
-                          : "Mileage not set"}
+                          ? `${vehicle.specs.mileage.toLocaleString("es-UY")} km`
+                          : "Sin kilometraje"}
                       </p>
                     </div>
                   </div>
@@ -123,7 +123,7 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
                   {vehicle.priceDisplay != null ? currency.format(vehicle.priceDisplay) : "—"}
                 </TableCell>
                 <TableCell className="text-sm text-muted-foreground">
-                  {new Date(vehicle.updatedAt).toLocaleDateString()}
+                  {new Date(vehicle.updatedAt).toLocaleDateString("es-UY")}
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
@@ -131,21 +131,21 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
                       render={<Button variant="ghost" size="icon-sm" />}
                     >
                       <MoreHorizontal />
-                      <span className="sr-only">Actions</span>
+                      <span className="sr-only">Acciones</span>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem
                         render={<Link href={`/dashboard/vehicles/${vehicle.id}/edit`} />}
                       >
                         <Pencil />
-                        Edit
+                        Editar
                       </DropdownMenuItem>
                       {vehicle.status === "published" ? (
                         <DropdownMenuItem
                           render={<Link href={`/vehicles/${vehicle.id}`} target="_blank" />}
                         >
                           <ExternalLink />
-                          View public page
+                          Ver página pública
                         </DropdownMenuItem>
                       ) : null}
                       <DropdownMenuItem
@@ -153,7 +153,7 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
                         onClick={() => setPendingDeleteId(vehicle.id)}
                       >
                         <Trash2 />
-                        Delete
+                        Eliminar
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -170,21 +170,21 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete this vehicle?</AlertDialogTitle>
+            <AlertDialogTitle>¿Eliminar este vehículo?</AlertDialogTitle>
             <AlertDialogDescription>
-              This permanently removes the listing and its photos from your
-              inventory. This can&apos;t be undone.
+              Esto elimina de forma permanente la publicación y sus fotos de
+              tu stock. Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel disabled={isDeleting}>Cancelar</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => pendingDeleteId && handleDelete(pendingDeleteId)}
               disabled={isDeleting}
               className="bg-destructive text-white hover:bg-destructive/90"
             >
               {isDeleting ? <Loader2 className="animate-spin" /> : null}
-              Delete
+              Eliminar
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

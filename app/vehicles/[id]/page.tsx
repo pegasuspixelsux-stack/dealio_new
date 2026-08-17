@@ -24,28 +24,28 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { id } = await params;
   const { vehicle } = await tryGetPublishedVehicle(id);
-  if (!vehicle) return { title: "Vehicle not found — Dealio" };
+  if (!vehicle) return { title: "Vehículo no encontrado — Dealio" };
 
   const title = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
   return {
     title: `${title} — Dealio`,
-    description: vehicle.description || `View details for this ${title}.`,
+    description: vehicle.description || `Ver los detalles de ${title}.`,
   };
 }
 
 const TRANSMISSION_LABELS: Record<string, string> = {
-  automatic: "Automatic",
+  automatic: "Automática",
   manual: "Manual",
   cvt: "CVT",
-  "dual-clutch": "Dual-clutch",
+  "dual-clutch": "Doble embrague",
 };
 
 const FUEL_LABELS: Record<string, string> = {
-  gasoline: "Gasoline",
-  diesel: "Diesel",
-  hybrid: "Hybrid",
-  electric: "Electric",
-  "plug-in-hybrid": "Plug-in hybrid",
+  gasoline: "Nafta",
+  diesel: "Diésel",
+  hybrid: "Híbrido",
+  electric: "Eléctrico",
+  "plug-in-hybrid": "Híbrido enchufable",
 };
 
 export default async function PublicVehiclePage({ params }: PageProps<"/vehicles/[id]">) {
@@ -57,10 +57,9 @@ export default async function PublicVehiclePage({ params }: PageProps<"/vehicles
       <div className="mx-auto max-w-xl px-4 py-24 sm:px-6 lg:px-8">
         <Alert variant="destructive">
           <TriangleAlert />
-          <AlertTitle>This page is temporarily unavailable</AlertTitle>
+          <AlertTitle>Esta página no está disponible en este momento</AlertTitle>
           <AlertDescription>
-            We couldn&apos;t load this vehicle right now. Please try again in a
-            moment.
+            No pudimos cargar este vehículo. Probá de nuevo en unos minutos.
           </AlertDescription>
         </Alert>
       </div>
@@ -75,22 +74,22 @@ export default async function PublicVehiclePage({ params }: PageProps<"/vehicles
   const specs = [
     {
       icon: Gauge,
-      label: "Mileage",
-      value: vehicle.specs.mileage != null ? `${vehicle.specs.mileage.toLocaleString()} mi` : null,
+      label: "Kilometraje",
+      value: vehicle.specs.mileage != null ? `${vehicle.specs.mileage.toLocaleString("es-UY")} km` : null,
     },
     {
       icon: Settings2,
-      label: "Transmission",
+      label: "Transmisión",
       value: vehicle.specs.transmission ? TRANSMISSION_LABELS[vehicle.specs.transmission] : null,
     },
     {
       icon: Fuel,
-      label: "Fuel type",
+      label: "Combustible",
       value: vehicle.specs.fuelType ? FUEL_LABELS[vehicle.specs.fuelType] : null,
     },
     {
       icon: Palette,
-      label: "Exterior color",
+      label: "Color exterior",
       value: vehicle.specs.exteriorColor || null,
     },
   ].filter((spec) => spec.value);
@@ -127,7 +126,7 @@ export default async function PublicVehiclePage({ params }: PageProps<"/vehicles
 
           {vehicle.description ? (
             <div>
-              <h2 className="mb-2 text-lg font-semibold text-foreground">Description</h2>
+              <h2 className="mb-2 text-lg font-semibold text-foreground">Descripción</h2>
               <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
                 {vehicle.description}
               </p>
@@ -137,12 +136,12 @@ export default async function PublicVehiclePage({ params }: PageProps<"/vehicles
           {(vehicle.specs.interiorColor || vehicle.specs.vin) && (
             <div>
               <h2 className="mb-2 text-lg font-semibold text-foreground">
-                Additional details
+                Detalles adicionales
               </h2>
               <dl className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
                 {vehicle.specs.interiorColor ? (
                   <div className="flex justify-between border-b border-border/60 py-1.5">
-                    <dt className="text-muted-foreground">Interior color</dt>
+                    <dt className="text-muted-foreground">Color interior</dt>
                     <dd className="font-medium text-foreground">{vehicle.specs.interiorColor}</dd>
                   </div>
                 ) : null}
@@ -175,7 +174,7 @@ export default async function PublicVehiclePage({ params }: PageProps<"/vehicles
               <Separator />
 
               <div>
-                <CardTitle className="mb-3 text-base">Ask about this vehicle</CardTitle>
+                <CardTitle className="mb-3 text-base">Consultá por este vehículo</CardTitle>
                 <LeadForm vehicleId={vehicle.id} vehicleTitle={title} />
               </div>
             </CardContent>

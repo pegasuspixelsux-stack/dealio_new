@@ -15,8 +15,9 @@ import {
 } from "@/components/ui/select";
 
 const TERMS = [36, 48, 60, 72, 84];
+const TERM_ITEMS = TERMS.map((months) => ({ value: String(months), label: `${months} meses` }));
 
-const currency = new Intl.NumberFormat("en-US", {
+const currency = new Intl.NumberFormat("es-UY", {
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 0,
@@ -38,8 +39,8 @@ function calculateMonthlyPayment(principal: number, aprPercent: number, termMont
 }
 
 export function FinancingCalculator() {
-  const [price, setPrice] = useState("28,000");
-  const [downPayment, setDownPayment] = useState("3,000");
+  const [price, setPrice] = useState("28000");
+  const [downPayment, setDownPayment] = useState("3000");
   const [apr, setApr] = useState("6.5");
   const [term, setTerm] = useState("60");
 
@@ -55,13 +56,13 @@ export function FinancingCalculator() {
           <div className="flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
             <Calculator className="size-4.5" />
           </div>
-          <CardTitle className="text-lg">Payment calculator</CardTitle>
+          <CardTitle className="text-lg">Calculadora de cuotas</CardTitle>
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="calc-price">Vehicle price</Label>
+            <Label htmlFor="calc-price">Precio del vehículo</Label>
             <div className="relative">
               <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted-foreground">
                 $
@@ -77,7 +78,7 @@ export function FinancingCalculator() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="calc-down">Down payment</Label>
+            <Label htmlFor="calc-down">Anticipo</Label>
             <div className="relative">
               <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted-foreground">
                 $
@@ -93,7 +94,7 @@ export function FinancingCalculator() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="calc-apr">Interest rate (APR)</Label>
+            <Label htmlFor="calc-apr">Tasa de interés anual</Label>
             <div className="relative">
               <Input
                 id="calc-apr"
@@ -109,8 +110,9 @@ export function FinancingCalculator() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="calc-term">Loan term</Label>
+            <Label htmlFor="calc-term">Plazo del préstamo</Label>
             <Select
+              items={TERM_ITEMS}
               value={term}
               onValueChange={(value) => value && setTerm(value)}
             >
@@ -118,9 +120,9 @@ export function FinancingCalculator() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {TERMS.map((months) => (
-                  <SelectItem key={months} value={String(months)}>
-                    {months} months
+                {TERM_ITEMS.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -130,17 +132,17 @@ export function FinancingCalculator() {
 
         <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/60 py-6 text-center">
           <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            Estimated monthly payment
+            Cuota mensual estimada
           </span>
           <span className="text-4xl font-semibold tracking-tight text-foreground">
             {currency.format(Math.round(monthlyPayment))}
-            <span className="text-base font-normal text-muted-foreground">/mo</span>
+            <span className="text-base font-normal text-muted-foreground">/mes</span>
           </span>
         </div>
 
         <p className="text-xs text-muted-foreground">
-          Estimate only, for illustration purposes. Actual rate and payment
-          depend on credit approval and lender terms.
+          Estimación a modo ilustrativo. La tasa y la cuota reales dependen de
+          la aprobación crediticia y las condiciones del prestamista.
         </p>
       </CardContent>
     </Card>

@@ -20,7 +20,7 @@ export function SignOutButton() {
   return (
     <Button variant="ghost" size="sm" onClick={handleSignOut} disabled={loading}>
       <LogOut />
-      Sign out
+      Cerrar sesión
     </Button>
   );
 }

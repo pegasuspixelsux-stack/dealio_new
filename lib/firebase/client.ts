@@ -15,7 +15,7 @@ let storage: FirebaseStorage | undefined;
 function ensureApp(): FirebaseApp {
   if (!isFirebaseClientConfigured) {
     throw new Error(
-      "Firebase is not configured. Add the NEXT_PUBLIC_FIREBASE_* values to .env.local and restart the dev server."
+      "Firebase no está configurado. Agregá los valores de NEXT_PUBLIC_FIREBASE_* a .env.local y reiniciá el servidor."
     );
   }
   if (!app) {

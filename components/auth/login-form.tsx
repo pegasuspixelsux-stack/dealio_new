@@ -15,15 +15,15 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 function friendlyAuthError(code: string): string {
   switch (code) {
     case "auth/invalid-email":
-      return "That email address doesn't look right.";
+      return "Ese correo electrónico no parece válido.";
     case "auth/user-not-found":
     case "auth/wrong-password":
     case "auth/invalid-credential":
-      return "Incorrect email or password.";
+      return "Correo o contraseña incorrectos.";
     case "auth/too-many-requests":
-      return "Too many attempts. Please wait a moment and try again.";
+      return "Demasiados intentos. Esperá un momento y probá de nuevo.";
     default:
-      return "Something went wrong signing you in. Please try again.";
+      return "Algo salió mal al iniciar sesión. Probá de nuevo.";
   }
 }
 
@@ -39,11 +39,11 @@ export function LoginForm() {
     return (
       <Alert variant="destructive">
         <TriangleAlert />
-        <AlertTitle>Firebase is not configured</AlertTitle>
+        <AlertTitle>Firebase no está configurado</AlertTitle>
         <AlertDescription>
-          Add the <code>NEXT_PUBLIC_FIREBASE_*</code> values to{" "}
-          <code>.env.local</code> and restart the dev server before signing
-          in.
+          Agregá los valores de <code>NEXT_PUBLIC_FIREBASE_*</code> a{" "}
+          <code>.env.local</code> y reiniciá el servidor antes de iniciar
+          sesión.
         </AlertDescription>
       </Alert>
     );
@@ -70,7 +70,7 @@ export function LoginForm() {
 
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
-        throw new Error(data.error ?? "Could not start a session.");
+        throw new Error(data.error ?? "No se pudo iniciar la sesión.");
       }
 
       const redirectTo = searchParams.get("from") ?? "/dashboard";
@@ -93,7 +93,7 @@ export function LoginForm() {
       ) : null}
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">Correo electrónico</Label>
         <Input
           id="email"
           type="email"
@@ -106,7 +106,7 @@ export function LoginForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">Contraseña</Label>
         <Input
           id="password"
           type="password"
@@ -120,7 +120,7 @@ export function LoginForm() {
 
       <Button type="submit" className="mt-2 w-full" disabled={status === "loading"}>
         {status === "loading" ? <Loader2 className="animate-spin" /> : null}
-        Sign in
+        Iniciar sesión
       </Button>
     </form>
   );

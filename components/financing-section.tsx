@@ -3,9 +3,9 @@ import { Landmark } from "lucide-react";
 import { FinancingCalculator } from "@/components/financing-calculator";
 
 const POINTS = [
-  "Flexible terms from 36 to 84 months",
-  "No impact to your credit score for an estimate",
-  "Apply for real financing once you find your vehicle",
+  "Plazos flexibles de 36 a 84 meses",
+  "Simular no afecta tu historial crediticio",
+  "Solicitá financiación real cuando encuentres tu vehículo",
 ];
 
 export function FinancingSection() {
@@ -15,15 +15,15 @@ export function FinancingSection() {
         <div>
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
             <Landmark className="size-4" />
-            Financing
+            Financiación
           </p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            See what it could cost you
+            Mirá cuánto te podría costar
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Get a quick monthly payment estimate before you even step onto the
-            lot. Adjust the price, down payment, rate, and term to find what
-            fits your budget.
+            Obtené una estimación rápida de tu cuota mensual antes de pisar el
+            lote. Ajustá el precio, el anticipo, la tasa y el plazo para
+            encontrar lo que se adapta a tu presupuesto.
           </p>
           <ul className="mt-6 flex flex-col gap-3">
             {POINTS.map((point) => (

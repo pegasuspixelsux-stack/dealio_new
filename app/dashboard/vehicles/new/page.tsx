@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 
 import { VehicleForm } from "@/components/dashboard/vehicle-form";
 
-export const metadata: Metadata = { title: "Add vehicle — Dealio" };
+export const metadata: Metadata = { title: "Agregar vehículo — Dealio" };
 
 export default function NewVehiclePage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-          Add vehicle
+          Agregar vehículo
         </h1>
         <p className="text-sm text-muted-foreground">
-          Fill in the details below, then publish when it&apos;s ready to go live.
+          Completá los datos y publicá cuando esté listo para salir en vivo.
         </p>
       </div>
       <VehicleForm mode="create" />

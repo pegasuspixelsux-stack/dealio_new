@@ -34,19 +34,24 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+const STATUSES: { value: FormState["status"]; label: string }[] = [
+  { value: "draft", label: "Borrador" },
+  { value: "published", label: "Publicado" },
+];
+
 const TRANSMISSIONS: { value: Transmission; label: string }[] = [
-  { value: "automatic", label: "Automatic" },
+  { value: "automatic", label: "Automática" },
   { value: "manual", label: "Manual" },
   { value: "cvt", label: "CVT" },
-  { value: "dual-clutch", label: "Dual-clutch" },
+  { value: "dual-clutch", label: "Doble embrague" },
 ];
 
 const FUEL_TYPES: { value: FuelType; label: string }[] = [
-  { value: "gasoline", label: "Gasoline" },
-  { value: "diesel", label: "Diesel" },
-  { value: "hybrid", label: "Hybrid" },
-  { value: "electric", label: "Electric" },
-  { value: "plug-in-hybrid", label: "Plug-in hybrid" },
+  { value: "gasoline", label: "Nafta" },
+  { value: "diesel", label: "Diésel" },
+  { value: "hybrid", label: "Híbrido" },
+  { value: "electric", label: "Eléctrico" },
+  { value: "plug-in-hybrid", label: "Híbrido enchufable" },
 ];
 
 interface FormState {
@@ -130,22 +135,22 @@ function buildInput(form: FormState): VehicleInput {
 
 function validate(form: FormState): Record<string, string> {
   const errors: Record<string, string> = {};
-  if (!form.make.trim()) errors.make = "Make is required.";
-  if (!form.model.trim()) errors.model = "Model is required.";
+  if (!form.make.trim()) errors.make = "La marca es obligatoria.";
+  if (!form.model.trim()) errors.model = "El modelo es obligatorio.";
 
   const year = Number(form.year);
   if (!form.year.trim() || Number.isNaN(year) || year < 1900 || year > 2100) {
-    errors.year = "Enter a valid year.";
+    errors.year = "Ingresá un año válido.";
   }
 
   if (form.mileage.trim() && Number.isNaN(Number(form.mileage))) {
-    errors.mileage = "Mileage must be a number.";
+    errors.mileage = "El kilometraje debe ser un número.";
   }
   if (form.priceDisplay.trim() && Number.isNaN(Number(form.priceDisplay))) {
-    errors.priceDisplay = "Price must be a number.";
+    errors.priceDisplay = "El precio debe ser un número.";
   }
   if (form.priceCompareAt.trim() && Number.isNaN(Number(form.priceCompareAt))) {
-    errors.priceCompareAt = "Price must be a number.";
+    errors.priceCompareAt = "El precio debe ser un número.";
   }
 
   return errors;
@@ -178,7 +183,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
     const validationErrors = validate(form);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) {
-      toast.error("Please fix the highlighted fields.");
+      toast.error("Revisá los campos marcados.");
       return;
     }
 
@@ -187,15 +192,15 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
       const input = buildInput(form);
       if (mode === "create") {
         await createVehicleAction(input);
-        toast.success("Vehicle created.");
+        toast.success("Vehículo creado.");
       } else if (vehicle) {
         await updateVehicleAction(vehicle.id, input);
-        toast.success("Vehicle updated.");
+        toast.success("Vehículo actualizado.");
       }
       router.push("/dashboard");
       router.refresh();
     } catch {
-      setSubmitError("Something went wrong saving this vehicle. Please try again.");
+      setSubmitError("Algo salió mal al guardar el vehículo. Probá de nuevo.");
       setSubmitting(false);
     }
   }
@@ -211,12 +216,12 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Basic details</CardTitle>
-          <CardDescription>The core identity of this listing.</CardDescription>
+          <CardTitle>Datos básicos</CardTitle>
+          <CardDescription>La identidad principal de esta publicación.</CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="make">Make</Label>
+            <Label htmlFor="make">Marca</Label>
             <Input
               id="make"
               value={form.make}
@@ -227,18 +232,18 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
             {errors.make ? <p className="text-xs text-destructive">{errors.make}</p> : null}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="model">Model</Label>
+            <Label htmlFor="model">Modelo</Label>
             <Input
               id="model"
               value={form.model}
               onChange={(e) => update("model", e.target.value)}
-              placeholder="Camry"
+              placeholder="Corolla"
               aria-invalid={Boolean(errors.model)}
             />
             {errors.model ? <p className="text-xs text-destructive">{errors.model}</p> : null}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="year">Year</Label>
+            <Label htmlFor="year">Año</Label>
             <Input
               id="year"
               inputMode="numeric"
@@ -251,19 +256,20 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
           </div>
 
           <div className="flex flex-col gap-2 sm:col-span-3">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">Descripción</Label>
             <Textarea
               id="description"
               value={form.description}
               onChange={(e) => update("description", e.target.value)}
-              placeholder="A well-maintained one-owner vehicle with a clean history..."
+              placeholder="Vehículo de único dueño, bien mantenido y con historial claro..."
               rows={5}
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="status">Status</Label>
+            <Label htmlFor="status">Estado</Label>
             <Select
+              items={STATUSES}
               value={form.status}
               onValueChange={(value) => update("status", value as FormState["status"])}
             >
@@ -271,8 +277,11 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="draft">Draft</SelectItem>
-                <SelectItem value="published">Published</SelectItem>
+                {STATUSES.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -281,18 +290,18 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Specifications</CardTitle>
-          <CardDescription>Details buyers use to compare vehicles.</CardDescription>
+          <CardTitle>Especificaciones</CardTitle>
+          <CardDescription>Datos que los compradores usan para comparar vehículos.</CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="mileage">Mileage</Label>
+            <Label htmlFor="mileage">Kilometraje</Label>
             <Input
               id="mileage"
               inputMode="numeric"
               value={form.mileage}
               onChange={(e) => update("mileage", e.target.value)}
-              placeholder="32,500"
+              placeholder="32.500"
               aria-invalid={Boolean(errors.mileage)}
             />
             {errors.mileage ? (
@@ -301,13 +310,14 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="transmission">Transmission</Label>
+            <Label htmlFor="transmission">Transmisión</Label>
             <Select
+              items={TRANSMISSIONS}
               value={form.transmission}
               onValueChange={(value) => update("transmission", value as Transmission)}
             >
               <SelectTrigger id="transmission" className="w-full">
-                <SelectValue placeholder="Select transmission" />
+                <SelectValue placeholder="Seleccioná la transmisión" />
               </SelectTrigger>
               <SelectContent>
                 {TRANSMISSIONS.map((option) => (
@@ -320,13 +330,14 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="fuelType">Fuel type</Label>
+            <Label htmlFor="fuelType">Combustible</Label>
             <Select
+              items={FUEL_TYPES}
               value={form.fuelType}
               onValueChange={(value) => update("fuelType", value as FuelType)}
             >
               <SelectTrigger id="fuelType" className="w-full">
-                <SelectValue placeholder="Select fuel type" />
+                <SelectValue placeholder="Seleccioná el combustible" />
               </SelectTrigger>
               <SelectContent>
                 {FUEL_TYPES.map((option) => (
@@ -339,34 +350,34 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="bodyType">Body type</Label>
+            <Label htmlFor="bodyType">Tipo de carrocería</Label>
             <Input
               id="bodyType"
               value={form.bodyType}
               onChange={(e) => update("bodyType", e.target.value)}
-              placeholder="Sedan"
+              placeholder="Sedán"
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="exteriorColor">Exterior color</Label>
+            <Label htmlFor="exteriorColor">Color exterior</Label>
             <Input
               id="exteriorColor"
               value={form.exteriorColor}
               onChange={(e) => update("exteriorColor", e.target.value)}
-              placeholder="Midnight Blue"
+              placeholder="Azul medianoche"
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="interiorColor">Interior color</Label>
+            <Label htmlFor="interiorColor">Color interior</Label>
             <Input
               id="interiorColor"
               value={form.interiorColor}
               onChange={(e) => update("interiorColor", e.target.value)}
-              placeholder="Black leather"
+              placeholder="Cuero negro"
             />
           </div>
           <div className="flex flex-col gap-2 sm:col-span-2 lg:col-span-3">
-            <Label htmlFor="vin">VIN</Label>
+            <Label htmlFor="vin">Número de chasis (VIN)</Label>
             <Input
               id="vin"
               value={form.vin}
@@ -379,15 +390,15 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Pricing</CardTitle>
+          <CardTitle>Precio</CardTitle>
           <CardDescription>
-            The display price is shown large as the headline price; the regular
-            price appears struck through next to it.
+            El precio principal se muestra grande como precio destacado; el
+            precio regular aparece tachado al lado.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="priceDisplay">Primary display price</Label>
+            <Label htmlFor="priceDisplay">Precio destacado</Label>
             <div className="relative">
               <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted-foreground">
                 $
@@ -397,7 +408,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
                 inputMode="decimal"
                 value={form.priceDisplay}
                 onChange={(e) => update("priceDisplay", e.target.value)}
-                placeholder="24,900"
+                placeholder="24.900"
                 className="pl-6 text-lg font-semibold"
                 aria-invalid={Boolean(errors.priceDisplay)}
               />
@@ -407,7 +418,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
             ) : null}
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="priceCompareAt">Regular / compare-at price</Label>
+            <Label htmlFor="priceCompareAt">Precio regular</Label>
             <div className="relative">
               <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted-foreground">
                 $
@@ -417,7 +428,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
                 inputMode="decimal"
                 value={form.priceCompareAt}
                 onChange={(e) => update("priceCompareAt", e.target.value)}
-                placeholder="27,500"
+                placeholder="27.500"
                 className="pl-6"
                 aria-invalid={Boolean(errors.priceCompareAt)}
               />
@@ -431,8 +442,8 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Photos</CardTitle>
-          <CardDescription>Upload as many photos as you&apos;d like.</CardDescription>
+          <CardTitle>Fotos</CardTitle>
+          <CardDescription>Subí todas las fotos que quieras.</CardDescription>
         </CardHeader>
         <CardContent>
           <PhotoUploader
@@ -450,11 +461,11 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
           onClick={() => router.push("/dashboard")}
           disabled={submitting}
         >
-          Cancel
+          Cancelar
         </Button>
         <Button type="submit" disabled={submitting}>
           {submitting ? <Loader2 className="animate-spin" /> : null}
-          {mode === "create" ? "Create vehicle" : "Save changes"}
+          {mode === "create" ? "Crear vehículo" : "Guardar cambios"}
         </Button>
       </div>
     </form>

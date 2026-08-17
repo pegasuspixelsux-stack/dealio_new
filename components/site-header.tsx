@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Ventajas", href: "#features" },
+  { label: "Financiación", href: "#financing" },
+  { label: "Nosotros", href: "#about" },
+  { label: "Contacto", href: "#contact" },
 ];
 
 export function SiteHeader() {
@@ -43,9 +43,9 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 md:flex">
           <Button variant="ghost" size="sm" nativeButton={false} render={<Link href="/login" />}>
-            Sign in
+            Iniciar sesión
           </Button>
-          <Button size="sm">Get started</Button>
+          <Button size="sm">Comenzar</Button>
         </div>
 
         <Sheet>
@@ -53,7 +53,7 @@ export function SiteHeader() {
             render={<Button variant="ghost" size="icon" className="md:hidden" />}
           >
             <Menu />
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">Abrir menú</span>
           </SheetTrigger>
           <SheetContent side="right">
             <SheetHeader>
@@ -82,9 +82,9 @@ export function SiteHeader() {
                   <Link href="/login" className={buttonVariants({ variant: "outline" })} />
                 }
               >
-                Sign in
+                Iniciar sesión
               </SheetClose>
-              <Button>Get started</Button>
+              <Button>Comenzar</Button>
             </div>
           </SheetContent>
         </Sheet>

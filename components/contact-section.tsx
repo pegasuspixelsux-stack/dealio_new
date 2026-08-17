@@ -3,10 +3,10 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 
 const CONTACT_ITEMS = [
-  { icon: Mail, label: "Email", value: "hello@dealio.app", href: "mailto:hello@dealio.app" },
-  { icon: Phone, label: "Phone", value: "+1 (555) 010-2024", href: "tel:+15550102024" },
-  { icon: MapPin, label: "Address", value: "1200 Auto Row, Springfield" },
-  { icon: Clock, label: "Hours", value: "Mon–Sat, 9am–7pm" },
+  { icon: Mail, label: "Correo", value: "hello@dealio.app", href: "mailto:hello@dealio.app" },
+  { icon: Phone, label: "Teléfono", value: "+598 2900 1234", href: "tel:+59829001234" },
+  { icon: MapPin, label: "Dirección", value: "Av. 18 de Julio 1200, Montevideo" },
+  { icon: Clock, label: "Horario", value: "Lun. a sáb., 9 a 19 h" },
 ];
 
 export function ContactSection() {
@@ -15,15 +15,15 @@ export function ContactSection() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-primary">
-            Contact
+            Contacto
           </p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Questions? We&apos;re here to help
+            ¿Tenés dudas? Estamos para ayudarte
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Whether you&apos;re curious about a vehicle, financing, or just
-            want to say hi — reach out any way that&apos;s convenient for
-            you.
+            Ya sea que tengas preguntas sobre un vehículo, la financiación, o
+            simplemente quieras saludar — escribinos por el medio que más te
+            convenga.
           </p>
 
           <dl className="mt-8 flex flex-col gap-5">

@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-export function SignOutButton() {
+export function SignOutButton({ className }: { className?: string }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +19,13 @@ export function SignOutButton() {
   }
 
   return (
-    <Button variant="ghost" size="sm" onClick={handleSignOut} disabled={loading}>
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={handleSignOut}
+      disabled={loading}
+      className={cn("justify-start", className)}
+    >
       <LogOut />
       Cerrar sesión
     </Button>

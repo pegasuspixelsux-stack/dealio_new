@@ -1,6 +1,6 @@
 import "server-only";
 
-import { FieldValue } from "firebase-admin/firestore";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
 
 import { getAdminDb } from "@/lib/firebase/admin";
 
@@ -18,6 +18,11 @@ export interface CreateTradeInLeadInput {
   notes: string;
 }
 
+export interface TradeInLead extends CreateTradeInLeadInput {
+  id: string;
+  createdAt: string;
+}
+
 export async function createTradeInLead(input: CreateTradeInLeadInput): Promise<void> {
   await getAdminDb()
     .collection(COLLECTION)
@@ -25,4 +30,27 @@ export async function createTradeInLead(input: CreateTradeInLeadInput): Promise<
       ...input,
       createdAt: FieldValue.serverTimestamp(),
     });
+}
+
+export async function listTradeInLeads(): Promise<TradeInLead[]> {
+  const snapshot = await getAdminDb().collection(COLLECTION).orderBy("createdAt", "desc").get();
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      year: data.year ?? "",
+      make: data.make ?? "",
+      model: data.model ?? "",
+      mileage: data.mileage ?? "",
+      condition: data.condition ?? "",
+      name: data.name ?? "",
+      email: data.email ?? "",
+      phone: data.phone ?? "",
+      notes: data.notes ?? "",
+      createdAt:
+        data.createdAt instanceof Timestamp
+          ? data.createdAt.toDate().toISOString()
+          : new Date().toISOString(),
+    };
+  });
 }

@@ -10,6 +10,7 @@ export async function createVehicleAction(input: VehicleInput): Promise<{ id: st
   await requireSession();
   const id = await createVehicle(input);
   revalidatePath("/dashboard");
+  revalidatePath("/dashboard/vehicles");
   revalidatePath(`/vehicles/${id}`);
   return { id };
 }
@@ -18,6 +19,7 @@ export async function updateVehicleAction(id: string, input: VehicleInput): Prom
   await requireSession();
   await updateVehicle(id, input);
   revalidatePath("/dashboard");
+  revalidatePath("/dashboard/vehicles");
   revalidatePath(`/dashboard/vehicles/${id}/edit`);
   revalidatePath(`/vehicles/${id}`);
 }
@@ -26,4 +28,5 @@ export async function deleteVehicleAction(id: string): Promise<void> {
   await requireSession();
   await deleteVehicle(id);
   revalidatePath("/dashboard");
+  revalidatePath("/dashboard/vehicles");
 }

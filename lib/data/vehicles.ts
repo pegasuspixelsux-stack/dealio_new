@@ -56,6 +56,12 @@ export async function getPublishedVehicle(id: string): Promise<Vehicle | null> {
   return vehicle;
 }
 
+/** Most recently updated published vehicles, for marketing surfaces like the homepage. */
+export async function listPublishedVehicles(max = 4): Promise<Vehicle[]> {
+  const vehicles = await listVehicles();
+  return vehicles.filter((vehicle) => vehicle.status === "published").slice(0, max);
+}
+
 /**
  * Same as `getPublishedVehicle`, but never throws — used by the public page
  * so a Firestore/config outage renders a friendly message instead of an

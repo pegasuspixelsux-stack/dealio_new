@@ -12,10 +12,13 @@ import { toast } from "sonner";
 
 import { getFirebaseStorage } from "@/lib/firebase/client";
 import { isFirebaseClientConfigured } from "@/lib/firebase/config";
+import { resizeImageFile } from "@/lib/image";
 import type { VehiclePhoto } from "@/types/vehicle";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
+
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 
 interface UploadingItem {
   id: string;
@@ -49,45 +52,57 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
 
   function handleFiles(fileList: FileList | null) {
     if (!fileList || fileList.length === 0) return;
+    Array.from(fileList).forEach((file) => processFile(file));
+  }
+
+  async function processFile(file: File) {
+    if (!file.type.startsWith("image/")) {
+      toast.error(`${file.name} isn't an image and was skipped.`);
+      return;
+    }
+
+    const uploadId = crypto.randomUUID();
+    const previewUrl = URL.createObjectURL(file);
+    setUploading((prev) => [...prev, { id: uploadId, previewUrl, progress: 0 }]);
+
+    // Shrink large photos in the browser before they ever hit the network —
+    // most phone photos compress from several MB down to a few hundred KB.
+    const upload = await resizeImageFile(file);
+
+    if (upload.size > MAX_UPLOAD_BYTES) {
+      toast.error(`${file.name} is larger than 5MB even after resizing and was skipped.`);
+      setUploading((prev) => prev.filter((item) => item.id !== uploadId));
+      URL.revokeObjectURL(previewUrl);
+      return;
+    }
+
     const storage = getFirebaseStorage();
+    const path = `${storageFolder}/${uploadId}-${upload.name}`;
+    const storageRef = ref(storage, path);
+    const task = uploadBytesResumable(storageRef, upload);
 
-    Array.from(fileList).forEach((file) => {
-      if (!file.type.startsWith("image/")) {
-        toast.error(`${file.name} isn't an image and was skipped.`);
-        return;
+    task.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setUploading((prev) =>
+          prev.map((item) => (item.id === uploadId ? { ...item, progress } : item))
+        );
+      },
+      () => {
+        toast.error(`Couldn't upload ${file.name}. Please try again.`);
+        setUploading((prev) => prev.filter((item) => item.id !== uploadId));
+        URL.revokeObjectURL(previewUrl);
+      },
+      async () => {
+        const url = await getDownloadURL(storageRef);
+        onChange([...photos, { url, path }]);
+        setUploading((prev) => prev.filter((item) => item.id !== uploadId));
+        URL.revokeObjectURL(previewUrl);
       }
-
-      const uploadId = crypto.randomUUID();
-      const previewUrl = URL.createObjectURL(file);
-      setUploading((prev) => [...prev, { id: uploadId, previewUrl, progress: 0 }]);
-
-      const path = `${storageFolder}/${uploadId}-${file.name}`;
-      const storageRef = ref(storage, path);
-      const task = uploadBytesResumable(storageRef, file);
-
-      task.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setUploading((prev) =>
-            prev.map((item) => (item.id === uploadId ? { ...item, progress } : item))
-          );
-        },
-        () => {
-          toast.error(`Couldn't upload ${file.name}. Please try again.`);
-          setUploading((prev) => prev.filter((item) => item.id !== uploadId));
-          URL.revokeObjectURL(previewUrl);
-        },
-        async () => {
-          const url = await getDownloadURL(storageRef);
-          onChange([...photos, { url, path }]);
-          setUploading((prev) => prev.filter((item) => item.id !== uploadId));
-          URL.revokeObjectURL(previewUrl);
-        }
-      );
-    });
+    );
   }
 
   async function handleRemove(photo: VehiclePhoto) {
@@ -178,7 +193,8 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
 
       <p className="text-xs text-muted-foreground">
         The first photo is used as the cover image everywhere the vehicle is
-        shown. Hover a photo to set it as cover or remove it.
+        shown. Hover a photo to set it as cover or remove it. Photos are
+        resized in your browser and capped at 5MB each.
       </p>
 
       {photos.length === 0 && uploading.length === 0 ? (

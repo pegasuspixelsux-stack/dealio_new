@@ -39,12 +39,12 @@ const SOCIAL_LINKS = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-background">
+    <footer className="bg-black">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
-            <Logo />
-            <p className="max-w-xs text-sm text-muted-foreground">
+            <Logo textClassName="text-white" />
+            <p className="max-w-xs text-sm text-white/60">
               Compra, venta y financiación de vehículos, todo en un mismo
               lugar.
             </p>
@@ -54,7 +54,7 @@ export function SiteFooter() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex size-9 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex size-9 items-center justify-center rounded-md border border-white/15 text-white/60 transition-colors hover:text-white"
                 >
                   <social.icon className="size-4" />
                 </a>
@@ -64,7 +64,7 @@ export function SiteFooter() {
 
           {FOOTER_LINKS.map((column) => (
             <div key={column.title} className="flex flex-col gap-3">
-              <h3 className="text-sm font-semibold text-foreground">
+              <h3 className="text-sm font-semibold text-white">
                 {column.title}
               </h3>
               <ul className="flex flex-col gap-2.5">
@@ -72,7 +72,7 @@ export function SiteFooter() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-sm text-white/60 transition-colors hover:text-white"
                     >
                       {link.label}
                     </a>
@@ -83,18 +83,18 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <Separator className="my-10" />
+        <Separator className="my-10 bg-white/15" />
 
-        <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 text-sm text-white/60 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} Dealio. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="transition-colors hover:text-foreground">
+            <a href="#" className="transition-colors hover:text-white">
               Términos
             </a>
-            <a href="#" className="transition-colors hover:text-foreground">
+            <a href="#" className="transition-colors hover:text-white">
               Privacidad
             </a>
-            <Link href="/login" className="transition-colors hover:text-foreground">
+            <Link href="/login" className="transition-colors hover:text-white">
               Ingreso al panel
             </Link>
           </div>

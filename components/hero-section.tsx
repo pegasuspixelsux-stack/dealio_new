@@ -26,7 +26,7 @@ export function HeroSection() {
       {/* Legibility overlay */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/80 to-background/20"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/80 to-black/20"
       />
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -35,12 +35,12 @@ export function HeroSection() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="mb-6 inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+            className="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/80"
           >
             Stock actualizado todas las semanas
           </motion.span>
 
-          <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+          <h1 className="text-balance text-4xl font-semibold tracking-tight text-white sm:text-6xl">
             {HEADLINE.split(" ").map((word, index) => (
               <motion.span
                 key={word + index}
@@ -58,7 +58,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.7 }}
-            className="mt-6 max-w-lg text-balance text-lg text-muted-foreground sm:text-xl"
+            className="mt-6 max-w-lg text-balance text-lg text-white/70 sm:text-xl"
           >
             En Dealio comprás con precios claros, vehículos revisados y
             financiación flexible — todo desde un mismo lugar.

@@ -12,7 +12,7 @@ export default function NewVehiclePage() {
           Agregar vehículo
         </h1>
         <p className="text-sm text-muted-foreground">
-          Completá los datos y publicá cuando esté listo para salir en vivo.
+          Completa los datos y publica cuando esté listo para salir en vivo.
         </p>
       </div>
       <VehicleForm mode="create" />

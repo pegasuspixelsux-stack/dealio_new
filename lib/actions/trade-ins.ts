@@ -31,14 +31,14 @@ export async function submitTradeInAction(
   const email = input.email.trim();
 
   if (!year || !make || !model || !name || !email) {
-    return { ok: false, error: "Completá los campos obligatorios." };
+    return { ok: false, error: "Completa los campos obligatorios." };
   }
   if (!EMAIL_PATTERN.test(email)) {
-    return { ok: false, error: "Ingresá un correo electrónico válido." };
+    return { ok: false, error: "Ingresa un correo electrónico válido." };
   }
   const yearNumber = Number(year);
   if (!Number.isInteger(yearNumber) || yearNumber < 1900 || yearNumber > 2100) {
-    return { ok: false, error: "Ingresá un año válido." };
+    return { ok: false, error: "Ingresa un año válido." };
   }
 
   try {
@@ -55,6 +55,6 @@ export async function submitTradeInAction(
     });
     return { ok: true };
   } catch {
-    return { ok: false, error: "No pudimos enviar tu solicitud. Probá de nuevo en un momento." };
+    return { ok: false, error: "No pudimos enviar tu solicitud. Inténtalo de nuevo en un momento." };
   }
 }

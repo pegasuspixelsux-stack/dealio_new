@@ -21,9 +21,9 @@ function friendlyAuthError(code: string): string {
     case "auth/invalid-credential":
       return "Correo o contraseña incorrectos.";
     case "auth/too-many-requests":
-      return "Demasiados intentos. Esperá un momento y probá de nuevo.";
+      return "Demasiados intentos. Espera un momento e inténtalo de nuevo.";
     default:
-      return "Algo salió mal al iniciar sesión. Probá de nuevo.";
+      return "Algo salió mal al iniciar sesión. Inténtalo de nuevo.";
   }
 }
 
@@ -41,8 +41,8 @@ export function LoginForm() {
         <TriangleAlert />
         <AlertTitle>Firebase no está configurado</AlertTitle>
         <AlertDescription>
-          Agregá los valores de <code>NEXT_PUBLIC_FIREBASE_*</code> a{" "}
-          <code>.env.local</code> y reiniciá el servidor antes de iniciar
+          Agrega los valores de <code>NEXT_PUBLIC_FIREBASE_*</code> a{" "}
+          <code>.env.local</code> y reinicia el servidor antes de iniciar
           sesión.
         </AlertDescription>
       </Alert>

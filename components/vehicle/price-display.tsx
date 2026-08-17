@@ -28,7 +28,7 @@ export function PriceDisplay({
       </div>
       {showCompareAt ? (
         <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
-          Ahorrás {currency.format(priceCompareAt! - priceDisplay!)}
+          Ahorras {currency.format(priceCompareAt! - priceDisplay!)}
         </span>
       ) : null}
     </div>

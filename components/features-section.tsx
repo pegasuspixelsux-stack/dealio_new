@@ -20,13 +20,13 @@ const FEATURES: Feature[] = [
     icon: HandCoins,
     title: "Precios claros, sin sorpresas",
     description:
-      "Sin costos ocultos ni sorpresas de último momento — el precio que ves es el que pagás, más financiación flexible.",
+      "Sin costos ocultos ni sorpresas de último momento — el precio que ves es el que pagas, más financiación flexible.",
   },
   {
     icon: Wrench,
     title: "Te acompañamos después de la venta",
     description:
-      "Desde el papeleo hasta tu próximo trade-in, nuestro equipo sigue ahí mucho después de que te llevás el auto.",
+      "Desde el papeleo hasta tu próximo trade-in, nuestro equipo sigue ahí mucho después de que te llevas el auto.",
   },
 ];
 

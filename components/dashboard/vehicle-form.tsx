@@ -140,7 +140,7 @@ function validate(form: FormState): Record<string, string> {
 
   const year = Number(form.year);
   if (!form.year.trim() || Number.isNaN(year) || year < 1900 || year > 2100) {
-    errors.year = "Ingresá un año válido.";
+    errors.year = "Ingresa un año válido.";
   }
 
   if (form.mileage.trim() && Number.isNaN(Number(form.mileage))) {
@@ -183,7 +183,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
     const validationErrors = validate(form);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) {
-      toast.error("Revisá los campos marcados.");
+      toast.error("Revisa los campos marcados.");
       return;
     }
 
@@ -200,7 +200,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
       router.push("/dashboard");
       router.refresh();
     } catch {
-      setSubmitError("Algo salió mal al guardar el vehículo. Probá de nuevo.");
+      setSubmitError("Algo salió mal al guardar el vehículo. Inténtalo de nuevo.");
       setSubmitting(false);
     }
   }
@@ -317,7 +317,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
               onValueChange={(value) => update("transmission", value as Transmission)}
             >
               <SelectTrigger id="transmission" className="w-full">
-                <SelectValue placeholder="Seleccioná la transmisión" />
+                <SelectValue placeholder="Selecciona la transmisión" />
               </SelectTrigger>
               <SelectContent>
                 {TRANSMISSIONS.map((option) => (
@@ -337,7 +337,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
               onValueChange={(value) => update("fuelType", value as FuelType)}
             >
               <SelectTrigger id="fuelType" className="w-full">
-                <SelectValue placeholder="Seleccioná el combustible" />
+                <SelectValue placeholder="Selecciona el combustible" />
               </SelectTrigger>
               <SelectContent>
                 {FUEL_TYPES.map((option) => (
@@ -443,7 +443,7 @@ export function VehicleForm({ mode, vehicle }: VehicleFormProps) {
       <Card>
         <CardHeader>
           <CardTitle>Fotos</CardTitle>
-          <CardDescription>Subí todas las fotos que quieras.</CardDescription>
+          <CardDescription>Sube todas las fotos que quieras.</CardDescription>
         </CardHeader>
         <CardContent>
           <PhotoUploader

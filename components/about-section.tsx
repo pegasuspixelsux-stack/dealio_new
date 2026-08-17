@@ -29,7 +29,7 @@ export function AboutSection() {
           <p className="mt-4 text-balance text-muted-foreground">
             Somos un equipo chico que revisa cada vehículo antes de
             ofrecerlo, negocia con precios claros y sigue disponible mucho
-            después de que te llevás el auto. Comprar un usado no tiene por
+            después de que te llevas el auto. Comprar un usado no tiene por
             qué ser complicado.
           </p>
 

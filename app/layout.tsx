@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Dealio — Compra, venta y financiación de vehículos",
   description:
-    "Encontrá tu próximo vehículo en Dealio: stock actualizado, financiación y tasación de tu usado en Uruguay.",
+    "Encuentra tu próximo vehículo en Dealio: stock actualizado, financiación y tasación de tu usado en Uruguay.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

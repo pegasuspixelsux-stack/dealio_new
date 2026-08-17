@@ -3,7 +3,7 @@ import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 function buildWhatsAppMessage(vehicleTitle: string, vehicleUrl: string) {
-  return `¡Hola! Estoy interesado/a en ${vehicleTitle}. ¿Me contás más? ${vehicleUrl}`;
+  return `¡Hola! Estoy interesado/a en ${vehicleTitle}. ¿Me cuentas más? ${vehicleUrl}`;
 }
 
 export function WhatsAppButton({
@@ -39,7 +39,7 @@ export function WhatsAppButton({
       className="w-full bg-[#25D366] text-white hover:bg-[#1ebe5b]"
     >
       <MessageCircle />
-      Chat on WhatsApp
+      Chatear por WhatsApp
     </Button>
   );
 }

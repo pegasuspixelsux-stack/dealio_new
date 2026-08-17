@@ -17,7 +17,7 @@ const FOOTER_LINKS: { title: string; links: { label: string; href: string }[] }[
     title: "Empresa",
     links: [
       { label: "Nosotros", href: "#about" },
-      { label: "Trabajá con nosotros", href: "#" },
+      { label: "Trabaja con nosotros", href: "#" },
       { label: "Contacto", href: "#contact" },
     ],
   },

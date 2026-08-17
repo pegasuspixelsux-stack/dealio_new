@@ -67,7 +67,7 @@ export function TradeInForm() {
     if (result.ok) {
       setStatus("sent");
     } else {
-      setError(result.error ?? "Algo salió mal. Probá de nuevo.");
+      setError(result.error ?? "Algo salió mal. Inténtalo de nuevo.");
       setStatus("idle");
     }
   }
@@ -75,7 +75,7 @@ export function TradeInForm() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-lg">Solicitá una tasación</CardTitle>
+        <CardTitle className="text-lg">Solicita una tasación</CardTitle>
       </CardHeader>
       <CardContent>
         {status === "sent" ? (

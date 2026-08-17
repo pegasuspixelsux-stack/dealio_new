@@ -32,7 +32,7 @@ export function LeadForm({
     if (result.ok) {
       setStatus("sent");
     } else {
-      setError(result.error ?? "Algo salió mal. Probá de nuevo.");
+      setError(result.error ?? "Algo salió mal. Inténtalo de nuevo.");
       setStatus("idle");
     }
   }
@@ -42,8 +42,8 @@ export function LeadForm({
       <Alert className="border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300">
         <CircleCheck />
         <AlertDescription>
-          ¡Gracias, {name.split(" ")[0] || "che"}! Recibimos tu mensaje y te
-          responderemos a la brevedad.
+          ¡Gracias{name ? `, ${name.split(" ")[0]}` : ""}! Recibimos tu
+          mensaje y te responderemos a la brevedad.
         </AlertDescription>
       </Alert>
     );

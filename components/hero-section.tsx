@@ -5,7 +5,7 @@ import { ArrowRight, PlayCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-const HEADLINE = "Encontrá tu próximo auto sin vueltas";
+const HEADLINE = "Encuentra tu próximo vehículo sin complicaciones";
 
 export function HeroSection() {
   return (
@@ -60,7 +60,7 @@ export function HeroSection() {
             transition={{ duration: 0.4, delay: 0.7 }}
             className="mt-6 max-w-lg text-balance text-lg text-white/70 sm:text-xl"
           >
-            En Dealio comprás con precios claros, vehículos revisados y
+            En Dealio compras con precios claros, vehículos revisados y
             financiación flexible — todo desde un mismo lugar.
           </motion.p>
 

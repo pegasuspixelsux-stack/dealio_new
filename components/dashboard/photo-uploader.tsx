@@ -44,7 +44,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
         <TriangleAlert />
         <AlertDescription>
           Firebase no está configurado, así que la subida de fotos está
-          deshabilitada. Agregá los valores de{" "}
+          deshabilitada. Agrega los valores de{" "}
           <code>NEXT_PUBLIC_FIREBASE_*</code> a <code>.env.local</code>.
         </AlertDescription>
       </Alert>
@@ -93,7 +93,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
         );
       },
       () => {
-        toast.error(`No se pudo subir ${file.name}. Probá de nuevo.`);
+        toast.error(`No se pudo subir ${file.name}. Inténtalo de nuevo.`);
         setUploading((prev) => prev.filter((item) => item.id !== uploadId));
         URL.revokeObjectURL(previewUrl);
       },
@@ -194,7 +194,7 @@ export function PhotoUploader({ photos, onChange, storageFolder }: PhotoUploader
 
       <p className="text-xs text-muted-foreground">
         La primera foto se usa como portada en todos lados donde se muestra el
-        vehículo. Pasá el mouse sobre una foto para usarla como portada o
+        vehículo. Pasa el mouse sobre una foto para usarla como portada o
         quitarla. Las fotos se redimensionan en tu navegador y tienen un
         límite de 5MB cada una.
       </p>

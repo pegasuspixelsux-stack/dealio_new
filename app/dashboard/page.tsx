@@ -17,7 +17,7 @@ export default async function DashboardPage() {
   try {
     vehicles = await listVehicles();
   } catch {
-    loadError = "No pudimos cargar tu stock de vehículos. Recargá la página.";
+    loadError = "No pudimos cargar tu stock de vehículos. Recarga la página.";
   }
 
   return (

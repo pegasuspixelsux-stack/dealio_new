@@ -5,7 +5,7 @@ import { FinancingCalculator } from "@/components/financing-calculator";
 const POINTS = [
   "Plazos flexibles de 36 a 84 meses",
   "Simular no afecta tu historial crediticio",
-  "Solicitá financiación real cuando encuentres tu vehículo",
+  "Solicita financiación real cuando encuentres tu vehículo",
 ];
 
 export function FinancingSection() {
@@ -18,11 +18,11 @@ export function FinancingSection() {
             Financiación
           </p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Mirá cuánto te podría costar
+            Calcula cuánto te podría costar
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Obtené una estimación rápida de tu cuota mensual antes de pisar el
-            lote. Ajustá el precio, el anticipo, la tasa y el plazo para
+            Obtén una estimación rápida de tu cuota mensual antes de pisar el
+            lote. Ajusta el precio, el anticipo, la tasa y el plazo para
             encontrar lo que se adapta a tu presupuesto.
           </p>
           <ul className="mt-6 flex flex-col gap-3">

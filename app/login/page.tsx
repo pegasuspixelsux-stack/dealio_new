@@ -31,7 +31,7 @@ export default async function LoginPage() {
         <div className="mb-8 flex flex-col items-center gap-2 text-center">
           <Logo />
           <p className="text-sm text-muted-foreground">
-            Iniciá sesión para gestionar tu stock de vehículos.
+            Inicia sesión para gestionar tu stock de vehículos.
           </p>
         </div>
         <Suspense fallback={<Skeleton className="h-48 w-full" />}>

@@ -53,7 +53,7 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
         toast.success("Vehículo eliminado.");
         router.refresh();
       } catch {
-        toast.error("No pudimos eliminar el vehículo. Probá de nuevo.");
+        toast.error("No pudimos eliminar el vehículo. Inténtalo de nuevo.");
       } finally {
         setPendingDeleteId(null);
       }
@@ -65,7 +65,7 @@ export function VehicleTable({ vehicles }: { vehicles: Vehicle[] }) {
       <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-border py-16 text-center">
         <p className="font-medium text-foreground">Todavía no hay vehículos</p>
         <p className="text-sm text-muted-foreground">
-          Agregá tu primer vehículo para empezar a armar tu stock.
+          Agrega tu primer vehículo para empezar a armar tu stock.
         </p>
       </div>
     );

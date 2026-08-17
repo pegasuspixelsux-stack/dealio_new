@@ -22,9 +22,8 @@ export function DealerHighlightSection() {
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
             No subimos un auto a la vitrina sin revisarlo de arriba a abajo.
-            Mecánica, papeles y estética quedan en orden antes de que lo veas
-            vos, así comprás con la tranquilidad de saber qué te estás
-            llevando.
+            Mecánica, papeles y estética quedan en orden antes de que lo veas,
+            así compras con la tranquilidad de saber qué te estás llevando.
           </p>
           <ul className="mt-6 flex flex-col gap-3">
             {POINTS.map((point) => (

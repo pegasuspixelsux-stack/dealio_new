@@ -59,7 +59,7 @@ export default async function PublicVehiclePage({ params }: PageProps<"/vehicles
           <TriangleAlert />
           <AlertTitle>Esta página no está disponible en este momento</AlertTitle>
           <AlertDescription>
-            No pudimos cargar este vehículo. Probá de nuevo en unos minutos.
+            No pudimos cargar este vehículo. Inténtalo de nuevo en unos minutos.
           </AlertDescription>
         </Alert>
       </div>

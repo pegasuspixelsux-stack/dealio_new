@@ -17,7 +17,7 @@ export default async function EditVehiclePage({ params }: PageProps<"/dashboard/
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">
           {vehicle.year} {vehicle.make} {vehicle.model}
         </h1>
-        <p className="text-sm text-muted-foreground">Actualizá los datos de esta publicación.</p>
+        <p className="text-sm text-muted-foreground">Actualiza los datos de esta publicación.</p>
       </div>
       <VehicleForm mode="edit" vehicle={vehicle} />
     </div>

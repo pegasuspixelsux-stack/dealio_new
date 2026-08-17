@@ -26,7 +26,7 @@ export async function FeaturedVehiclesSection() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Disponibles ahora
+            Seleccionados ahora
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
             Un vistazo a lo que tenemos en stock, actualizado a medida que
@@ -34,9 +34,13 @@ export async function FeaturedVehiclesSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto -mx-4 px-4 pb-4 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
           {vehicles.map((vehicle) => (
-            <Link key={vehicle.id} href={`/vehicles/${vehicle.id}`} className="group">
+            <Link
+              key={vehicle.id}
+              href={`/vehicles/${vehicle.id}`}
+              className="group w-3/4 shrink-0 snap-start sm:w-auto"
+            >
               <Card className="gap-0 overflow-hidden py-0 ring-border/60 transition-shadow group-hover:shadow-md">
                 <div className="aspect-4/3 w-full overflow-hidden bg-muted">
                   {vehicle.photos[0] ? (

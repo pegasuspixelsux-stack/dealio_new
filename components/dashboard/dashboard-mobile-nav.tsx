@@ -8,12 +8,9 @@ import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { SignOutButton } from "@/components/dashboard/sign-out-button";
-import {
-  NAV_LINK_ACTIVE,
-  NAV_LINK_CLASS,
-  NAV_LINK_INACTIVE,
-} from "@/components/dashboard/dashboard-nav";
+import { NAV_LINK_CLASS, NAV_LINK_INACTIVE } from "@/components/dashboard/dashboard-nav";
 import { MAIN_NAV_ITEMS } from "@/components/dashboard/dashboard-nav-items";
+import { useAccentColor } from "@/lib/hooks/useAccentColor";
 import {
   Sheet,
   SheetClose,
@@ -27,6 +24,14 @@ import {
 export function DashboardMobileNav() {
   const pathname = usePathname();
   const settingsActive = pathname.startsWith("/dashboard/settings");
+  const { accentConfig, mounted } = useAccentColor();
+
+  if (!mounted) return null;
+
+  const getActiveStyle = () => ({
+    backgroundColor: `${accentConfig.hex}15`,
+    color: accentConfig.hex,
+  });
 
   return (
     <Sheet>
@@ -49,7 +54,8 @@ export function DashboardMobileNav() {
                 render={
                   <Link
                     href={item.href}
-                    className={cn(NAV_LINK_CLASS, active ? NAV_LINK_ACTIVE : NAV_LINK_INACTIVE)}
+                    className={cn(NAV_LINK_CLASS, active ? "" : NAV_LINK_INACTIVE)}
+                    style={active ? getActiveStyle() : {}}
                   />
                 }
               >
@@ -60,12 +66,13 @@ export function DashboardMobileNav() {
           })}
         </nav>
 
-        <SheetFooter className="border-t border-border">
+        <SheetFooter className="border-t border-black/[0.06] dark:border-white/[0.08]">
           <SheetClose
             render={
               <Link
                 href="/dashboard/settings"
-                className={cn(NAV_LINK_CLASS, settingsActive ? NAV_LINK_ACTIVE : NAV_LINK_INACTIVE)}
+                className={cn(NAV_LINK_CLASS, settingsActive ? "" : NAV_LINK_INACTIVE)}
+                style={settingsActive ? getActiveStyle() : {}}
               />
             }
           >

@@ -3,7 +3,8 @@ import { seedVehicles } from "@/lib/scripts/seedVehicles";
 
 export async function POST(request: NextRequest) {
   try {
-    const result = await seedVehicles();
+    const { forceReset } = await request.json().catch(() => ({ forceReset: false }));
+    const result = await seedVehicles(forceReset);
 
     return NextResponse.json(result, {
       status: result.success ? 200 : 400,

@@ -9,8 +9,8 @@ import { SignOutButton } from "@/components/dashboard/sign-out-button";
 import { MAIN_NAV_ITEMS } from "@/components/dashboard/dashboard-nav-items";
 
 export const NAV_LINK_CLASS =
-  "flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-medium transition-all duration-200";
-export const NAV_LINK_ACTIVE = "bg-black/5 dark:bg-white/10 text-foreground";
+  "flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-medium transition-all duration-200 relative";
+export const NAV_LINK_ACTIVE = "bg-blue-500/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-6 before:bg-blue-500 before:rounded-r-full";
 export const NAV_LINK_INACTIVE = "text-zinc-600 dark:text-zinc-400 hover:text-foreground hover:bg-black/[0.03] dark:hover:bg-white/[0.05]";
 
 export function DashboardNav() {

@@ -3,37 +3,16 @@ import Link from "next/link";
 
 import { requireSession } from "@/lib/auth/session";
 import { Logo } from "@/components/logo";
-import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { DashboardMobileNav } from "@/components/dashboard/dashboard-mobile-nav";
+import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const session = await requireSession();
 
   return (
     <div className="flex min-h-screen flex-1 bg-white dark:bg-black">
-      {/* Left Sidebar - Full Height Navigation */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:shrink-0 border-r border-black/[0.06] dark:border-white/[0.08]">
-        {/* Logo Area */}
-        <div className="flex items-center gap-3 border-b border-black/[0.06] dark:border-white/[0.08] px-6 py-6">
-          <Link href="/dashboard" className="transition-opacity hover:opacity-80 flex-1">
-            <Logo />
-          </Link>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto">
-          <div className="p-3">
-            <DashboardNav />
-          </div>
-        </nav>
-
-        {/* User Info */}
-        <div className="border-t border-black/[0.06] dark:border-white/[0.08] px-6 py-4">
-          <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400 truncate">
-            {session.email}
-          </p>
-        </div>
-      </aside>
+      {/* Left Sidebar - Full Height Navigation with Accent Color */}
+      <DashboardSidebar userEmail={session.email} />
 
       {/* Right Content Area */}
       <div className="flex flex-1 flex-col min-h-screen">

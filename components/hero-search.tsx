@@ -21,7 +21,7 @@ export function HeroSearch() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="relative z-10 -mt-12 md:-mt-20 mb-0 md:mb-2">
+    <div className="relative z-10 -mt-12 md:-mt-20 mb-0 md:mb-2 hidden md:block">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="bg-white shadow-lg rounded-lg md:rounded-lg p-4 md:p-6 space-y-3 md:space-y-4">
           {/* Search Input */}

@@ -1,3 +1,5 @@
+import { ScrollReveal } from "@/components/scroll-reveal";
+
 const STATS = [
   { value: "10 mil+", label: "Vehículos entregados" },
   { value: "4.8★", label: "Valoración promedio" },
@@ -8,7 +10,7 @@ export function AboutSection() {
   return (
     <section id="about" className="border-b border-border/60 py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div className="order-2 lg:order-1">
+        <ScrollReveal className="order-2 lg:order-1">
           <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -17,9 +19,9 @@ export function AboutSection() {
               className="aspect-square w-full object-cover"
             />
           </div>
-        </div>
+        </ScrollReveal>
 
-        <div className="order-1 lg:order-2">
+        <ScrollReveal delay={0.15} className="order-1 lg:order-2">
           <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Sobre nosotros
           </p>
@@ -44,7 +46,7 @@ export function AboutSection() {
               </div>
             ))}
           </dl>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

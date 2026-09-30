@@ -1,6 +1,7 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { ContactForm } from "@/components/contact-form";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const CONTACT_ITEMS = [
   { icon: Mail, label: "Correo", value: "hello@dealio.app", href: "mailto:hello@dealio.app" },
@@ -13,7 +14,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="border-b border-border/60 py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div>
+        <ScrollReveal>
           <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Contacto
           </p>
@@ -47,9 +48,11 @@ export function ContactSection() {
               </div>
             ))}
           </dl>
-        </div>
+        </ScrollReveal>
 
-        <ContactForm />
+        <ScrollReveal delay={0.15}>
+          <ContactForm />
+        </ScrollReveal>
       </div>
     </section>
   );

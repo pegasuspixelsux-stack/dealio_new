@@ -1,3 +1,5 @@
+import { ScrollReveal } from "@/components/scroll-reveal";
+
 const BANKS = ["BROU", "Santander", "Itaú", "BBVA", "Scotiabank", "HSBC"];
 // Duplicated once so the marquee can loop seamlessly at -50%.
 const TRACK = [...BANKS, ...BANKS];
@@ -5,7 +7,7 @@ const TRACK = [...BANKS, ...BANKS];
 export function FinancingPartnersTicker() {
   return (
     <section className="border-b border-border/60 bg-muted/30 py-10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <ScrollReveal className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <p className="mb-6 text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">
           Financiación disponible a través de
         </p>
@@ -29,7 +31,7 @@ export function FinancingPartnersTicker() {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

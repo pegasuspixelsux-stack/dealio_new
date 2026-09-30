@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { Calculator } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -59,74 +58,93 @@ export function FinancingCalculator() {
           <CardTitle className="text-lg">Calculadora de cuotas</CardTitle>
         </div>
       </CardHeader>
-      <CardContent className="flex flex-col gap-5">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="flex flex-col gap-2">
+      <CardContent className="flex flex-col gap-6">
+        {/* Precio del vehículo */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
             <Label htmlFor="calc-price">Precio del vehículo</Label>
-            <div className="relative">
-              <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted-foreground">
-                $
-              </span>
-              <Input
-                id="calc-price"
-                inputMode="decimal"
-                value={price}
-                onChange={(event) => setPrice(event.target.value)}
-                className="pl-6"
-              />
-            </div>
+            <span className="text-sm font-semibold text-foreground">${price}</span>
           </div>
+          <input
+            id="calc-price"
+            type="range"
+            min="5000"
+            max="100000"
+            step="1000"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+            className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+          />
+          <div className="flex justify-between text-xs text-muted-foreground">
+            <span>$5k</span>
+            <span>$100k</span>
+          </div>
+        </div>
 
-          <div className="flex flex-col gap-2">
+        {/* Anticipo */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
             <Label htmlFor="calc-down">Anticipo</Label>
-            <div className="relative">
-              <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted-foreground">
-                $
-              </span>
-              <Input
-                id="calc-down"
-                inputMode="decimal"
-                value={downPayment}
-                onChange={(event) => setDownPayment(event.target.value)}
-                className="pl-6"
-              />
-            </div>
+            <span className="text-sm font-semibold text-foreground">${downPayment}</span>
           </div>
+          <input
+            id="calc-down"
+            type="range"
+            min="0"
+            max={Math.min(50000, Number(price))}
+            step="500"
+            value={downPayment}
+            onChange={(event) => setDownPayment(event.target.value)}
+            className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+          />
+          <div className="flex justify-between text-xs text-muted-foreground">
+            <span>$0</span>
+            <span>$50k</span>
+          </div>
+        </div>
 
-          <div className="flex flex-col gap-2">
+        {/* Tasa de interés */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
             <Label htmlFor="calc-apr">Tasa de interés anual</Label>
-            <div className="relative">
-              <Input
-                id="calc-apr"
-                inputMode="decimal"
-                value={apr}
-                onChange={(event) => setApr(event.target.value)}
-                className="pr-7"
-              />
-              <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-muted-foreground">
-                %
-              </span>
-            </div>
+            <span className="text-sm font-semibold text-foreground">{apr}%</span>
           </div>
+          <input
+            id="calc-apr"
+            type="range"
+            min="2"
+            max="15"
+            step="0.1"
+            value={apr}
+            onChange={(event) => setApr(event.target.value)}
+            className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+          />
+          <div className="flex justify-between text-xs text-muted-foreground">
+            <span>2%</span>
+            <span>15%</span>
+          </div>
+        </div>
 
-          <div className="flex flex-col gap-2">
+        {/* Plazo del préstamo */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
             <Label htmlFor="calc-term">Plazo del préstamo</Label>
-            <Select
-              items={TERM_ITEMS}
-              value={term}
-              onValueChange={(value) => value && setTerm(value)}
-            >
-              <SelectTrigger id="calc-term" className="w-full">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {TERM_ITEMS.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <span className="text-sm font-semibold text-foreground">{term} meses</span>
+          </div>
+          <div className="flex gap-2">
+            {TERMS.map((months) => (
+              <button
+                key={months}
+                onClick={() => setTerm(String(months))}
+                className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                  term === String(months)
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                }`}
+              >
+                {months}
+              </button>
+            ))}
           </div>
         </div>
 

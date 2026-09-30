@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const POINTS = [
   "Inspección mecánica de múltiples puntos en cada vehículo",
@@ -13,7 +14,7 @@ export function DealerHighlightSection() {
   return (
     <section className="border-b border-border/60 py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div>
+        <ScrollReveal>
           <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Nuestro proceso
           </p>
@@ -36,16 +37,16 @@ export function DealerHighlightSection() {
           <Button className="mt-8" nativeButton={false} render={<Link href="#inventory" />}>
             Ver stock disponible
           </Button>
-        </div>
+        </ScrollReveal>
 
-        <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
+        <ScrollReveal delay={0.15} className="overflow-hidden rounded-2xl border border-border shadow-sm">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1200&auto=format&fit=crop"
             alt="Vehículo revisado y listo para la venta"
             className="aspect-square w-full object-cover"
           />
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

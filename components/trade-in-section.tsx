@@ -1,6 +1,7 @@
 import { RefreshCw } from "lucide-react";
 
 import { TradeInForm } from "@/components/trade-in-form";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const POINTS = [
   "Recibe una tasación real en un día hábil",
@@ -12,7 +13,7 @@ export function TradeInSection() {
   return (
     <section id="trade-in" className="border-b border-border/60 py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div>
+        <ScrollReveal>
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
             <RefreshCw className="size-4" />
             Permuta
@@ -32,9 +33,11 @@ export function TradeInSection() {
               </li>
             ))}
           </ul>
-        </div>
+        </ScrollReveal>
 
-        <TradeInForm />
+        <ScrollReveal delay={0.15}>
+          <TradeInForm />
+        </ScrollReveal>
       </div>
     </section>
   );

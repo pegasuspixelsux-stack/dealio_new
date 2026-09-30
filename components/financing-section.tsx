@@ -1,6 +1,7 @@
 import { Landmark } from "lucide-react";
 
 import { FinancingCalculator } from "@/components/financing-calculator";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const POINTS = [
   "Plazos flexibles de 36 a 84 meses",
@@ -12,7 +13,7 @@ export function FinancingSection() {
   return (
     <section id="financing" className="border-b border-border/60 bg-muted/20 py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div>
+        <ScrollReveal>
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
             <Landmark className="size-4" />
             Financiación
@@ -33,9 +34,11 @@ export function FinancingSection() {
               </li>
             ))}
           </ul>
-        </div>
+        </ScrollReveal>
 
-        <FinancingCalculator />
+        <ScrollReveal delay={0.15}>
+          <FinancingCalculator />
+        </ScrollReveal>
       </div>
     </section>
   );

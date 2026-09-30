@@ -208,7 +208,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Hatchback",
       vin: "3VWZ81H17LM123456",
     },
-    photos: [{ url: "https://images.unsplash.com/photo-1566023967268-18ef6b13ffa9?w=1200&q=80", path: "volkswagen-golf-gti.jpg" }],
+    photos: [{ url: "https://picsum.photos/1200/800?random=1&t=1", path: "volkswagen-golf-gti.jpg" }],
     status: "published",
   },
   {
@@ -228,7 +228,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "SUV",
       vin: "JTNKRFEJ6L5123456",
     },
-    photos: [{ url: "https://images.unsplash.com/photo-1562618913-e1fef3b27ebc?w=1200&q=80", path: "toyota-land-cruiser.jpg" }],
+    photos: [{ url: "https://picsum.photos/1200/800?random=2&t=2", path: "toyota-land-cruiser.jpg" }],
     status: "published",
   },
 ];

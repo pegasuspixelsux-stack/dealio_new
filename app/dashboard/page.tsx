@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Car, CheckCircle2, Inbox, Users } from "lucide-react";
+import { Car, CheckCircle2, Inbox, Users, ArrowRight } from "lucide-react";
 
 import { listVehicles } from "@/lib/data/vehicles";
 import { listAppUsers } from "@/lib/data/users";
@@ -10,6 +10,7 @@ import { listContactMessages, type ContactMessage } from "@/lib/data/contact";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DashboardAnimations } from "@/components/dashboard/dashboard-animations";
 
 export const metadata: Metadata = { title: "Panel — Dealio" };
 export const dynamic = "force-dynamic";
@@ -98,56 +99,70 @@ export default async function DashboardHomePage() {
   const recentLeads = toUnifiedLeads(leads, tradeInLeads, contactMessages).slice(0, 5);
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">Resumen</h1>
-        <p className="text-sm text-muted-foreground">
+    <div className="flex flex-col gap-8">
+      {/* Header */}
+      <div className="space-y-2">
+        <h1 className="text-3xl font-light tracking-tight text-foreground">Resumen</h1>
+        <p className="text-sm font-light text-zinc-500 dark:text-zinc-400">
           Un vistazo general a tu stock y tus leads.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {kpis.map((kpi) => (
-          <Card key={kpi.label}>
-            <CardContent className="flex items-center gap-3">
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <kpi.icon className="size-5" />
+      {/* Bento Grid KPIs */}
+      <DashboardAnimations>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {kpis.map((kpi, idx) => (
+            <div
+              key={kpi.label}
+              className="group relative overflow-hidden rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-zinc-900/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-black/[0.12] dark:hover:border-white/[0.12] hover:bg-white/95 dark:hover:bg-zinc-900/80 hover:shadow-lg"
+              style={{ animationDelay: `${idx * 0.1}s` }}
+            >
+              <div className="flex items-start justify-between">
+                <div className="space-y-3">
+                  <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 tracking-wide uppercase">
+                    {kpi.label}
+                  </p>
+                  <p className="text-4xl font-light tracking-tight text-foreground">
+                    {kpi.value}
+                  </p>
+                </div>
+                <div className="flex size-12 items-center justify-center rounded-2xl bg-black/5 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition-colors">
+                  <kpi.icon className="size-5" />
+                </div>
               </div>
-              <div>
-                <p className="text-2xl font-semibold tracking-tight text-foreground">
-                  {kpi.value}
-                </p>
-                <p className="text-xs text-muted-foreground">{kpi.label}</p>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+            </div>
+          ))}
+        </div>
+      </DashboardAnimations>
 
+      {/* Content Grid */}
+      {/* Recent Vehicles & Leads */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
+        {/* Recent Vehicles */}
+        <div className="overflow-hidden rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-zinc-900/50 backdrop-blur-sm">
+          <div className="border-b border-black/[0.06] dark:border-white/[0.08] px-6 py-5">
             <div className="flex items-center justify-between">
-              <CardTitle>Últimos vehículos</CardTitle>
-              <Link href="/dashboard/vehicles" className="text-sm text-primary hover:underline">
+              <h2 className="text-lg font-light tracking-tight text-foreground">Últimos vehículos</h2>
+              <Link href="/dashboard/vehicles" className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
                 Ver todos
+                <ArrowRight className="size-4" />
               </Link>
             </div>
-          </CardHeader>
-          <CardContent className="flex flex-col divide-y divide-border">
+          </div>
+          <div className="divide-y divide-black/[0.06] dark:divide-white/[0.08]">
             {recentVehicles.length === 0 ? (
-              <p className="py-6 text-center text-sm text-muted-foreground">
-                Todavía no hay vehículos
-              </p>
+              <div className="py-12 text-center">
+                <p className="text-sm font-light text-zinc-500 dark:text-zinc-400">Todavía no hay vehículos</p>
+              </div>
             ) : (
-              recentVehicles.map((vehicle) => (
+              recentVehicles.map((vehicle, idx) => (
                 <Link
                   key={vehicle.id}
                   href={`/dashboard/vehicles/${vehicle.id}/edit`}
-                  className="-mx-2 flex items-center justify-between gap-3 rounded-md px-2 py-3 transition-colors hover:bg-muted/50"
+                  className="group flex items-center justify-between gap-4 px-6 py-4 transition-all hover:bg-black/[0.02] dark:hover:bg-white/[0.02]"
                 >
-                  <div className="flex min-w-0 items-center gap-3">
-                    <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-muted">
+                  <div className="flex min-w-0 items-center gap-4">
+                    <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800">
                       {vehicle.photos[0] ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
@@ -156,14 +171,14 @@ export default async function DashboardHomePage() {
                           className="size-full object-cover"
                         />
                       ) : (
-                        <Car className="size-4 text-muted-foreground" />
+                        <Car className="size-5 text-zinc-400 dark:text-zinc-600" />
                       )}
                     </div>
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-medium text-foreground">
+                      <p className="truncate text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {vehicle.year} {vehicle.make} {vehicle.model}
                       </p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-xs font-light text-zinc-500 dark:text-zinc-400">
                         {dateFormatter.format(new Date(vehicle.updatedAt))}
                       </p>
                     </div>
@@ -172,41 +187,45 @@ export default async function DashboardHomePage() {
                 </Link>
               ))
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
+        {/* Recent Leads */}
+        <div className="overflow-hidden rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-zinc-900/50 backdrop-blur-sm">
+          <div className="border-b border-black/[0.06] dark:border-white/[0.08] px-6 py-5">
             <div className="flex items-center justify-between">
-              <CardTitle>Últimos leads</CardTitle>
-              <Link href="/dashboard/leads" className="text-sm text-primary hover:underline">
+              <h2 className="text-lg font-light tracking-tight text-foreground">Últimos leads</h2>
+              <Link href="/dashboard/leads" className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
                 Ver todos
+                <ArrowRight className="size-4" />
               </Link>
             </div>
-          </CardHeader>
-          <CardContent className="flex flex-col divide-y divide-border">
+          </div>
+          <div className="divide-y divide-black/[0.06] dark:divide-white/[0.08]">
             {recentLeads.length === 0 ? (
-              <p className="py-6 text-center text-sm text-muted-foreground">
-                Todavía no hay leads
-              </p>
+              <div className="py-12 text-center">
+                <p className="text-sm font-light text-zinc-500 dark:text-zinc-400">Todavía no hay leads</p>
+              </div>
             ) : (
               recentLeads.map((lead) => (
-                <div key={`${lead.kind}-${lead.id}`} className="flex items-center justify-between gap-3 py-3">
+                <div key={`${lead.kind}-${lead.id}`} className="group flex items-center justify-between gap-4 px-6 py-4 transition-all hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-foreground">{lead.name}</p>
-                    <p className="truncate text-xs text-muted-foreground">{lead.title}</p>
+                    <p className="truncate text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{lead.name}</p>
+                    <p className="truncate text-xs font-light text-zinc-500 dark:text-zinc-400">{lead.title}</p>
                   </div>
-                  <div className="flex shrink-0 flex-col items-end gap-1">
-                    <Badge variant="outline">{KIND_LABELS[lead.kind]}</Badge>
-                    <span className="text-xs text-muted-foreground">
+                  <div className="flex shrink-0 items-center gap-3">
+                    <span className="text-xs font-light text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
                       {dateFormatter.format(new Date(lead.createdAt))}
                     </span>
+                    <Badge variant="secondary" className="rounded-full bg-black/5 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 border-0">
+                      {KIND_LABELS[lead.kind]}
+                    </Badge>
                   </div>
                 </div>
               ))
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

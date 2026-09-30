@@ -19,7 +19,7 @@ export function DashboardNav() {
 
   return (
     <nav className="hidden lg:flex lg:h-full lg:flex-col lg:gap-2">
-      <div className="flex flex-col gap-0.5">
+      <div className="flex flex-col gap-0.5 flex-1 overflow-y-auto">
         {MAIN_NAV_ITEMS.map((item) => {
           const active = item.match(pathname);
           return (
@@ -35,7 +35,7 @@ export function DashboardNav() {
         })}
       </div>
 
-      <div className="mt-auto flex flex-col gap-0.5 border-t border-black/[0.06] dark:border-white/[0.08] pt-3">
+      <div className="sticky bottom-0 left-0 right-0 flex flex-col gap-0.5 border-t border-black/[0.06] dark:border-white/[0.08] pt-3 pb-2 bg-white dark:bg-transparent">
         <Link
           href="/dashboard/settings"
           className={cn(NAV_LINK_CLASS, settingsActive ? NAV_LINK_ACTIVE : NAV_LINK_INACTIVE)}

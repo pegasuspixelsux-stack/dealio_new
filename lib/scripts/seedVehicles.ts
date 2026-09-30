@@ -1,5 +1,5 @@
 import { db } from "@/lib/firebase";
-import { collection, getDocs, addDoc, writeBatch } from "firebase/firestore";
+import { collection, getDocs, doc, writeBatch } from "firebase/firestore";
 
 export interface Vehicle {
   id?: string;
@@ -146,8 +146,8 @@ export async function seedVehicles(): Promise<{ success: boolean; count: number;
     const batch = writeBatch(db);
     const now = new Date();
 
-    VEHICLES_DATA.forEach((vehicle) => {
-      const docRef = vehiclesRef.doc();
+    VEHICLES_DATA.forEach((vehicle, index) => {
+      const docRef = doc(vehiclesRef, vehicle.slug);
       batch.set(docRef, {
         ...vehicle,
         createdAt: now,

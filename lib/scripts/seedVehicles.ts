@@ -1,6 +1,11 @@
 import { db } from "@/lib/firebase";
 import { collection, getDocs, doc, writeBatch } from "firebase/firestore";
 
+export interface VehiclePhoto {
+  url: string;
+  path: string;
+}
+
 export interface Vehicle {
   id?: string;
   slug: string;
@@ -19,7 +24,7 @@ export interface Vehicle {
     bodyType: string;
     vin: string;
   };
-  photos: string[];
+  photos: VehiclePhoto[];
   status: "published" | "draft";
   createdAt?: Date;
   updatedAt?: Date;
@@ -43,7 +48,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Coupe",
       vin: "WBSDD01060AA01234",
     },
-    photos: ["https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&q=80", path: "bmw-m4-competition.jpg" }],
     status: "published",
   },
   {
@@ -63,7 +68,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Coupe",
       vin: "WP0AA2995RS123456",
     },
-    photos: ["https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=1200&q=80", path: "porsche-911-gt3.jpg" }],
     status: "published",
   },
   {
@@ -83,7 +88,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Estate",
       vin: "WUAUU0SC7LN987654",
     },
-    photos: ["https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=1200&q=80", path: "audi-rs6-avant.jpg" }],
     status: "published",
   },
   {
@@ -103,7 +108,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "SUV",
       vin: "WDC1634261V123456",
     },
-    photos: ["https://images.unsplash.com/photo-1520031441872-265e4ff70366?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1520031441872-265e4ff70366?w=1200&q=80", path: "mercedes-amg-g63.jpg" }],
     status: "published",
   },
   {
@@ -123,7 +128,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Coupe",
       vin: "1FA6P8CF2H5123456",
     },
-    photos: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=1200&q=80", path: "ford-mustang-shelby.jpg" }],
     status: "published",
   },
   {
@@ -143,7 +148,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Sedan",
       vin: "5YJ3E1EA5PF123456",
     },
-    photos: ["https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1200&q=80", path: "tesla-model-s-plaid.jpg" }],
     status: "published",
   },
   {
@@ -163,7 +168,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "SUV",
       vin: "SALRR2EV7F2123456",
     },
-    photos: ["https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&q=80", path: "range-rover-sport.jpg" }],
     status: "published",
   },
   {
@@ -183,7 +188,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Coupe",
       vin: "1G1YY22G935123456",
     },
-    photos: ["https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&q=80", path: "chevrolet-corvette-c8.jpg" }],
     status: "published",
   },
   {
@@ -203,7 +208,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "Hatchback",
       vin: "3VWZ81H17LM123456",
     },
-    photos: ["https://images.unsplash.com/photo-1541899481282-d53bffe3c351?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1541899481282-d53bffe3c351?w=1200&q=80", path: "volkswagen-golf-gti.jpg" }],
     status: "published",
   },
   {
@@ -223,7 +228,7 @@ const VEHICLES_DATA: Omit<Vehicle, "id">[] = [
       bodyType: "SUV",
       vin: "JTNKRFEJ6L5123456",
     },
-    photos: ["https://images.unsplash.com/photo-1594784439943-7f311c107106?w=1200&q=80"],
+    photos: [{ url: "https://images.unsplash.com/photo-1594784439943-7f311c107106?w=1200&q=80", path: "toyota-land-cruiser.jpg" }],
     status: "published",
   },
 ];

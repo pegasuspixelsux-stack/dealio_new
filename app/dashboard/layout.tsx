@@ -12,7 +12,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   return (
     <div className="flex min-h-screen flex-1 bg-white dark:bg-black">
       {/* Left Sidebar - Full Height Navigation with Accent Color */}
-      <DashboardSidebar userEmail={session.email} />
+      <DashboardSidebar userEmail={session.email!} />
 
       {/* Right Content Area */}
       <div className="flex flex-1 flex-col min-h-screen">

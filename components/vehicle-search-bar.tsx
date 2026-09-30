@@ -69,7 +69,7 @@ export function VehicleSearchBar() {
   return (
     <section className="relative z-10 -mt-8 px-4 sm:-mt-10 sm:px-6 lg:px-8">
       <ScrollReveal>
-        <Card className="mx-auto max-w-6xl shadow-lg ring-border/60">
+        <Card className="mx-auto max-w-[1440px] shadow-lg ring-border/60">
           <CardContent>
             <form
               onSubmit={(event) => {

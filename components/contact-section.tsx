@@ -13,7 +13,7 @@ const CONTACT_ITEMS = [
 export function ContactSection() {
   return (
     <section id="contact" className="border-b border-border/60 py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <ScrollReveal>
           <p className="text-xs font-bold uppercase tracking-widest text-primary">
             Contacto

@@ -9,7 +9,7 @@ const STATS = [
 export function AboutSection() {
   return (
     <section id="about" className="border-b border-border/60 py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <ScrollReveal className="order-2 lg:order-1">
           <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}

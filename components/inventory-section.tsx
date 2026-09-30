@@ -73,7 +73,7 @@ export function InventorySection() {
 
   return (
     <section className="border-b border-border/60 bg-muted/40 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         {/* Mobile Search Box */}
         <div className="mb-6 md:hidden">
           <Input

@@ -15,7 +15,7 @@ export async function FeaturedVehiclesSection() {
 
   return (
     <section id="inventory" className="border-b border-border/60 bg-muted/40 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mx-auto max-w-2xl text-center hidden">
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Unidades Seleccionadas

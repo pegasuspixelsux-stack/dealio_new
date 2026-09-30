@@ -25,7 +25,7 @@ export default async function InventoryPage() {
     <div className="flex min-h-full flex-1 flex-col">
       <SiteHeader />
       <main className="flex-1 pt-24 pb-20 sm:pt-28">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               Stock disponible

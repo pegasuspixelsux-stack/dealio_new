@@ -3,7 +3,7 @@ import { MapPin, Clock, Phone } from "lucide-react";
 export function InfoStripe() {
   return (
     <div className="bg-black/90 py-3 border-b border-white/10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           {/* Location */}
           <div className="flex items-center gap-2 text-xs text-white/80">

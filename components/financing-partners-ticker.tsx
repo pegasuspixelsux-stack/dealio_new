@@ -7,7 +7,7 @@ const TRACK = [...BANKS, ...BANKS];
 export function FinancingPartnersTicker() {
   return (
     <section className="border-b border-border/60 bg-muted/30 py-10">
-      <ScrollReveal className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <ScrollReveal className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <p className="mb-6 text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">
           Financiación disponible a través de
         </p>

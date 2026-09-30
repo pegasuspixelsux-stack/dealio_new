@@ -39,7 +39,7 @@ export function SiteHeader() {
     <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
     }`} style={{ top: "40px" }}>
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0 [&_svg]:!text-white [&_*]:!text-white">
           <Logo />
         </Link>

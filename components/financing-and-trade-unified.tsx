@@ -26,7 +26,7 @@ export function FinancingAndTradeUnified() {
     <>
       {/* Financing Section */}
       <section id="financing" className="border-b border-border/60 bg-muted/20 py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
           {/* Desktop Tab Navigation */}
           <div className="mb-12 hidden gap-8 border-b border-border md:flex">
             <button

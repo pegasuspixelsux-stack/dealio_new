@@ -95,7 +95,7 @@ export default async function PublicVehiclePage({ params }: PageProps<"/vehicles
   ].filter((spec) => spec.value);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="flex flex-col gap-8 lg:col-span-2">
           <PhotoGallery photos={vehicle.photos} title={title} />

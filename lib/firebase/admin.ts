@@ -38,6 +38,10 @@ function buildCredential(): Credential {
   const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
   const rawPrivateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY ?? "";
 
+  if (!projectId || !clientEmail || !rawPrivateKey) {
+    throw new Error("Firebase Admin credentials not configured");
+  }
+
   let lastError: unknown;
   for (const privateKey of candidatePrivateKeys(rawPrivateKey)) {
     try {
@@ -47,7 +51,7 @@ function buildCredential(): Credential {
     }
   }
   throw new Error(
-    "Firebase Admin private key could not be parsed. Re-copy FIREBASE_ADMIN_PRIVATE_KEY from the service account JSON's \"private_key\" field.",
+    "Firebase Admin private key could not be parsed.",
     { cause: lastError }
   );
 }

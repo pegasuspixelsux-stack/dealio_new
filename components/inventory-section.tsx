@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { VehicleCard } from "@/components/vehicle-card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Filter, Clock } from "lucide-react";
+import { Search, Filter, Clock, Grid2x2, Rows3, LayoutGrid } from "lucide-react";
 
 const SHORTCUTS = [
   { label: "SUV", value: "suv" },
@@ -13,10 +13,13 @@ const SHORTCUTS = [
   { label: "Económicos", value: "economicos" },
 ];
 
+type MobileViewMode = "vertical-1" | "horizontal-1" | "vertical-2";
+
 export function InventorySection() {
   const [vehicles, setVehicles] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredVehicles, setFilteredVehicles] = useState<any[]>([]);
+  const [mobileViewMode, setMobileViewMode] = useState<MobileViewMode>("vertical-1");
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -48,15 +51,75 @@ export function InventorySection() {
     }
   }, [searchQuery, vehicles]);
 
+  const getGridClasses = () => {
+    if (typeof window === "undefined") return "";
+    const isMobile = window.innerWidth < 768;
+
+    if (!isMobile) {
+      return "grid gap-6 sm:grid-cols-2 lg:grid-cols-3";
+    }
+
+    switch (mobileViewMode) {
+      case "vertical-1":
+        return "grid gap-6 grid-cols-1";
+      case "horizontal-1":
+        return "grid gap-6 grid-cols-1";
+      case "vertical-2":
+        return "grid gap-6 grid-cols-2";
+      default:
+        return "grid gap-6 grid-cols-1";
+    }
+  };
+
   return (
     <section className="border-b border-border/60 bg-muted/40 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Mobile Grid Selector */}
+        <div className="mb-6 flex items-center justify-between md:hidden">
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              variant={mobileViewMode === "vertical-1" ? "default" : "outline"}
+              onClick={() => setMobileViewMode("vertical-1")}
+              title="1 columna vertical"
+              className="h-10 w-10 p-0"
+            >
+              <Rows3 className="size-4" />
+            </Button>
+            <Button
+              size="sm"
+              variant={mobileViewMode === "horizontal-1" ? "default" : "outline"}
+              onClick={() => setMobileViewMode("horizontal-1")}
+              title="1 columna horizontal"
+              className="h-10 w-10 p-0"
+            >
+              <LayoutGrid className="size-4" />
+            </Button>
+            <Button
+              size="sm"
+              variant={mobileViewMode === "vertical-2" ? "default" : "outline"}
+              onClick={() => setMobileViewMode("vertical-2")}
+              title="2 columnas"
+              className="h-10 w-10 p-0"
+            >
+              <Grid2x2 className="size-4" />
+            </Button>
+          </div>
+          <Button variant="outline" size="sm" className="gap-2">
+            <Filter className="size-4" />
+            Filtros
+          </Button>
+        </div>
 
         {/* Grid */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={getGridClasses()}>
             {filteredVehicles.map((vehicle) => (
-              <VehicleCard key={vehicle.id} vehicle={vehicle} />
+              <VehicleCard
+                key={vehicle.id}
+                vehicle={vehicle}
+                layout={mobileViewMode === "horizontal-1" ? "horizontal" : "vertical"}
+              />
             ))}
           </div>
         ) : (

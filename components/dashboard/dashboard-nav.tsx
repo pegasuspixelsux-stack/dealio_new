@@ -60,7 +60,7 @@ export function DashboardNav() {
         })}
       </div>
 
-      <div className="sticky bottom-0 left-0 right-0 flex flex-col gap-0.5 border-t border-white/20 pt-3 pb-2 bg-transparent">
+      <div className="flex flex-col gap-0.5 border-t border-white/20 pt-3 pb-2 mt-auto">
         <Link
           href="/dashboard/settings"
           className={cn(

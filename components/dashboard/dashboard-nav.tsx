@@ -33,7 +33,12 @@ export function DashboardNav() {
   });
 
   return (
-    <nav className="hidden lg:flex lg:h-full lg:flex-col lg:gap-2">
+    <nav
+      className="hidden lg:flex lg:h-full lg:flex-col lg:gap-2 rounded-3xl p-3 transition-colors duration-200"
+      style={{
+        backgroundColor: accentConfig.hex,
+      }}
+    >
       <div className="flex flex-col gap-0.5 flex-1 overflow-y-auto">
         {MAIN_NAV_ITEMS.map((item) => {
           const active = item.match(pathname);
@@ -41,15 +46,13 @@ export function DashboardNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={cn(NAV_LINK_CLASS, active ? "" : NAV_LINK_INACTIVE)}
-              style={active ? { ...getActiveStyle() } : {}}
-            >
-              {active && (
-                <span
-                  className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full"
-                  style={{ backgroundColor: accentConfig.hex }}
-                />
+              className={cn(
+                "flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-medium transition-all duration-200 relative",
+                active
+                  ? "bg-white/20 text-white"
+                  : "text-white/70 hover:text-white hover:bg-white/10"
               )}
+            >
               <item.icon className="size-4 flex-shrink-0" />
               <span className="font-light">{item.label}</span>
             </Link>
@@ -57,26 +60,27 @@ export function DashboardNav() {
         })}
       </div>
 
-      <div className="sticky bottom-0 left-0 right-0 flex flex-col gap-0.5 border-t border-black/[0.06] dark:border-white/[0.08] pt-3 pb-2 bg-white dark:bg-transparent">
+      <div className="sticky bottom-0 left-0 right-0 flex flex-col gap-0.5 border-t border-white/20 pt-3 pb-2 bg-transparent">
         <Link
           href="/dashboard/settings"
-          className={cn(NAV_LINK_CLASS, settingsActive ? "" : NAV_LINK_INACTIVE)}
-          style={settingsActive ? { ...getActiveStyle() } : {}}
-        >
-          {settingsActive && (
-            <span
-              className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full"
-              style={{ backgroundColor: accentConfig.hex }}
-            />
+          className={cn(
+            "flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-medium transition-all duration-200 relative",
+            settingsActive
+              ? "bg-white/20 text-white"
+              : "text-white/70 hover:text-white hover:bg-white/10"
           )}
+        >
           <Settings className="size-4 flex-shrink-0" />
           <span className="font-light">Configuración</span>
         </Link>
-        <Link href="/" className={cn(NAV_LINK_CLASS, NAV_LINK_INACTIVE)}>
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-medium transition-all duration-200 text-white/70 hover:text-white hover:bg-white/10"
+        >
           <ArrowLeft className="size-4 flex-shrink-0" />
           <span className="font-light">Volver al sitio</span>
         </Link>
-        <SignOutButton className={cn(NAV_LINK_CLASS, NAV_LINK_INACTIVE, "w-full justify-start")} />
+        <SignOutButton className="flex items-center gap-2.5 rounded-2xl px-3 py-2 text-sm font-medium transition-all duration-200 text-white/70 hover:text-white hover:bg-white/10 w-full justify-start" />
       </div>
     </nav>
   );

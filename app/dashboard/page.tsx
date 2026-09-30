@@ -10,7 +10,6 @@ import { listContactMessages, type ContactMessage } from "@/lib/data/contact";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DashboardAnimations } from "@/components/dashboard/dashboard-animations";
 
 export const metadata: Metadata = { title: "Panel — Dealio" };
 export const dynamic = "force-dynamic";
@@ -109,31 +108,28 @@ export default async function DashboardHomePage() {
       </div>
 
       {/* Bento Grid KPIs */}
-      <DashboardAnimations>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {kpis.map((kpi, idx) => (
-            <div
-              key={kpi.label}
-              className="group relative overflow-hidden rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-zinc-900/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-black/[0.12] dark:hover:border-white/[0.12] hover:bg-white/95 dark:hover:bg-zinc-900/80 hover:shadow-lg"
-              style={{ animationDelay: `${idx * 0.1}s` }}
-            >
-              <div className="flex items-start justify-between">
-                <div className="space-y-3">
-                  <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 tracking-wide uppercase">
-                    {kpi.label}
-                  </p>
-                  <p className="text-4xl font-light tracking-tight text-foreground">
-                    {kpi.value}
-                  </p>
-                </div>
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-black/5 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition-colors">
-                  <kpi.icon className="size-5" />
-                </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {kpis.map((kpi) => (
+          <div
+            key={kpi.label}
+            className="group relative overflow-hidden rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-zinc-900/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-black/[0.12] dark:hover:border-white/[0.12] hover:bg-white/95 dark:hover:bg-zinc-900/80 hover:shadow-lg"
+          >
+            <div className="flex items-start justify-between">
+              <div className="space-y-3">
+                <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400 tracking-wide uppercase">
+                  {kpi.label}
+                </p>
+                <p className="text-4xl font-light tracking-tight text-foreground">
+                  {kpi.value}
+                </p>
+              </div>
+              <div className="flex size-12 items-center justify-center rounded-2xl bg-black/5 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 group-hover:bg-black/10 dark:group-hover:bg-white/10 transition-colors">
+                <kpi.icon className="size-5" />
               </div>
             </div>
-          ))}
-        </div>
-      </DashboardAnimations>
+          </div>
+        ))}
+      </div>
 
       {/* Content Grid */}
       {/* Recent Vehicles & Leads */}

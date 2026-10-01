@@ -5,14 +5,14 @@ export async function GET(request: NextRequest) {
   try {
     const db = getAdminDb();
     const limit = parseInt(request.nextUrl.searchParams.get("limit") ?? "12");
-    const snapshot = await db
-      .collection("vehicles")
-      .where("status", "==", "published")
-      .get();
 
-    const vehicles = snapshot.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .slice(0, limit);
+    // Try to get all vehicles first (no filter)
+    const snapshot = await db.collection("vehicles").limit(limit).get();
+
+    const vehicles = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
 
     return NextResponse.json(vehicles, {
       headers: {

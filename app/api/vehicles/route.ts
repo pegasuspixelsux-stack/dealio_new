@@ -9,9 +9,17 @@ export async function GET(request: NextRequest) {
     // Try to get all vehicles first (no filter)
     const snapshot = await db.collection("vehicles").limit(limit).get();
 
-    const vehicles = snapshot.docs.map((doc) => ({
+    const placeholders = [
+      "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1605559424843-9e4c3ca3806d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1552519507-da3effbb7cb6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1570355394211-b71861f2e7b5?w=800&h=600&fit=crop",
+    ];
+
+    const vehicles = snapshot.docs.map((doc, index) => ({
       id: doc.id,
-      ...doc.data()
+      ...doc.data(),
+      photos: [{ url: placeholders[index % placeholders.length], path: `placeholder/${index}` }]
     }));
 
     return NextResponse.json(vehicles, {

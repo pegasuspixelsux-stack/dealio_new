@@ -14,9 +14,12 @@ export default function Home() {
     <WhatsAppProvider>
       <div className="flex min-h-full flex-1 flex-col">
         {/* 1. Black Stripe - FIXED at top */}
-        <div className="fixed top-0 left-0 right-0 z-40">
+        <div className="fixed top-0 left-0 right-0 z-50">
           <InfoStripe />
         </div>
+
+        {/* Spacer for fixed header */}
+        <div className="h-10" />
 
         {/* WhatsApp Contact Button */}
         <WhatsAppContact />

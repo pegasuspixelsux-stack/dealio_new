@@ -228,7 +228,7 @@ export function HeroSection() {
         }}
       />
 
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center mt-[10vh]">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col justify-center md:mt-[10vh]">
         <div className="flex max-w-xl flex-col items-start text-left">
           <motion.span
             initial={{ opacity: 0, y: -8 }}

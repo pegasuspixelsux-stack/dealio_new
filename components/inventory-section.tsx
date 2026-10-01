@@ -20,6 +20,7 @@ export function InventorySection() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredVehicles, setFilteredVehicles] = useState<any[]>([]);
   const [mobileViewMode, setMobileViewMode] = useState<MobileViewMode>("vertical-1");
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -34,6 +35,8 @@ export function InventorySection() {
         }
       } catch (error) {
         console.error("Failed to fetch vehicles:", error);
+      } finally {
+        setLoaded(true);
       }
     };
     fetchVehicles();
@@ -124,7 +127,11 @@ export function InventorySection() {
         </div>
 
         {/* Grid */}
-        {filteredVehicles.length > 0 ? (
+        {!loaded ? (
+          <div className="py-12 text-center">
+            <p className="text-muted-foreground">Cargando vehículos...</p>
+          </div>
+        ) : filteredVehicles.length > 0 ? (
           <div className={getGridClasses()}>
             {filteredVehicles.map((vehicle) => (
               <VehicleCard

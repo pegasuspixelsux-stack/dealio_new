@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Car } from "lucide-react";
 
 import type { Vehicle } from "@/types/vehicle";
@@ -44,12 +45,11 @@ export function VehicleCard({
           )}
         >
           {photoUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={photoUrl}
               alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              className="transition-transform duration-300 group-hover:scale-105"
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
             <div className="flex size-full items-center justify-center text-muted-foreground">

@@ -25,10 +25,12 @@ export function InventorySection() {
     const fetchVehicles = async () => {
       try {
         const response = await fetch("/api/vehicles?limit=100");
+        const data = await response.json();
         if (response.ok) {
-          const data = await response.json();
           setVehicles(data);
           setFilteredVehicles(data);
+        } else {
+          console.error("API error:", data);
         }
       } catch (error) {
         console.error("Failed to fetch vehicles:", error);

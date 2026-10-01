@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebase/admin";
-import { collection, query, where, getDocs } from "firebase-admin/firestore";
 
 export async function GET(request: NextRequest) {
   try {
     const db = getAdminDb();
     const limit = parseInt(request.nextUrl.searchParams.get("limit") ?? "12");
-    const vehiclesRef = collection(db, "vehicles");
-    const q = query(vehiclesRef, where("status", "==", "published"));
-    const snapshot = await getDocs(q);
+    const snapshot = await db
+      .collection("vehicles")
+      .where("status", "==", "published")
+      .get();
 
     const vehicles = snapshot.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))

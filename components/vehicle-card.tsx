@@ -20,6 +20,15 @@ export function VehicleCard({
 }) {
   const horizontal = layout === "horizontal";
 
+  const placeholders = [
+    "https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1605559424843-9e4c3ca3806d?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1552519507-da3effbb7cb6?w=800&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1570355394211-b71861f2e7b5?w=800&h=600&fit=crop",
+  ];
+
+  const photoUrl = vehicle.photos?.[0]?.url || placeholders[Math.floor(Math.random() * placeholders.length)];
+
   return (
     <Link href={`/vehicles/${vehicle.id}`} className="group block">
       <Card
@@ -34,10 +43,10 @@ export function VehicleCard({
             horizontal ? "aspect-square w-2/5" : "aspect-4/3 w-full"
           )}
         >
-          {vehicle.photos[0] ? (
+          {photoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={vehicle.photos[0].url}
+              src={photoUrl}
               alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
               className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
             />

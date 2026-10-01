@@ -39,7 +39,7 @@ export function VehicleCard({
       >
         <div
           className={cn(
-            "shrink-0 overflow-hidden bg-muted",
+            "shrink-0 overflow-hidden bg-muted relative",
             horizontal ? "aspect-square w-2/5" : "aspect-4/3 w-full"
           )}
         >
@@ -48,7 +48,8 @@ export function VehicleCard({
             <img
               src={photoUrl}
               alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-              className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              className="transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
             <div className="flex size-full items-center justify-center text-muted-foreground">
